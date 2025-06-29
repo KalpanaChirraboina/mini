@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaloji Narayana Rao - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Kaloji Narayana Rao, the People's Poet of Telangana, known for his powerful Telugu poetry and social activism.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Kaloji Narayana Rao</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6">
+                <img src="kaloji.jpg" alt="Kaloji Narayana Rao Photo" class="profile-img w-full mb-6">
+                <h2 class="font-semibold text-gray-800">Kaloji Narayana Rao</h2>
+                <p class="text-gray-600 mb-4 subtitle">The People's Poet</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> September 9, 1914, Warangal, Telangana</p>
+                    <p><strong>Died:</strong> November 13, 2002, Warangal</p>
+                    <p><strong>State:</strong> Telangana</p>
+                    <p><strong>Language:</strong> Telugu</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> Osmania University, Hyderabad</p>
+                    <p><strong>Occupation:</strong> Poet, Freedom Fighter, Activist</p>
+                    <p><strong>Notable Role:</strong> Advocate for Telangana Identity</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section">
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Kaloji Narayana Rao, fondly known as the People's Poet, was a Telugu poet, freedom fighter, and social activist from Telangana. His poetry, deeply rooted in the struggles of the common people, championed social justice, Telangana identity, and human dignity. A fierce advocate against oppression, Kaloji’s works inspired generations, blending literary brilliance with revolutionary spirit, earning him the title of Telangana’s cultural conscience.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <div class="mb-6">
+                    <h3 class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/Idhi-Naa-Godava-Kaloji/dp/B0C4YSC44G/ref=sr_1_1?dib=eyJ2IjoiMSJ9.2NlhnxwkPpF7NuafAKDbKdNPPr_H7emwZOmA7omG0lHGjHj071QN20LucGBJIEps.Kp_aXQ9sT-nCLr2ai4AYW2m1N7_T2KAUtDpYefn7ib8&dib_tag=se&qid=1750692889&refinements=p_27%3AKaloji&s=books&sr=1-1" target="_blank" class="text-blue-600 hover:underline">Idhi Naa Godava</a> : is a collection of poems where Kaloji expresses his views on various issues of the time.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Naa-Godava-Kaloji-Kavithalu/dp/B0DG9CFXBH/ref=sr_1_2?dib=eyJ2IjoiMSJ9.2NlhnxwkPpF7NuafAKDbKdNPPr_H7emwZOmA7omG0lHGjHj071QN20LucGBJIEps.Kp_aXQ9sT-nCLr2ai4AYW2m1N7_T2KAUtDpYefn7ib8&dib_tag=se&qid=1750692889&refinements=p_27%3AKaloji&s=books&sr=1-2" target="_blank" class="text-blue-600 hover:underline">"Naa Godava - Kaloji Kavithalu"</a> : is another compilation of his poems, likely focusing on social and political themes relevant to the Telangana region. </li>
+                            <li class="book-link"><a href="https://www.amazon.in/Kaloji-Kaahali-%E0%B0%95%E0%B0%BE%E0%B0%B3%E0%B1%8B%E0%B0%9C%E0%B1%80-%E0%B0%9C%E0%B0%AF%E0%B0%82%E0%B0%A4%E0%B0%BF-%E0%B0%B8%E0%B0%82%E0%B0%9A%E0%B0%BF%E0%B0%95/dp/B0DG9CD1H6/ref=sr_1_3?dib=eyJ2IjoiMSJ9.2NlhnxwkPpF7NuafAKDbKdNPPr_H7emwZOmA7omG0lHGjHj071QN20LucGBJIEps.Kp_aXQ9sT-nCLr2ai4AYW2m1N7_T2KAUtDpYefn7ib8&dib_tag=se&qid=1750692889&refinements=p_27%3AKaloji&s=books&sr=1-3" target="_blank" class="text-blue-600 hover:underline">Kaloji Kaahali</a> : suggests a collection where Kaloji uses his poetry to raise awareness and incite action on social issues. </li>
+                          
+                        </ul>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content">
+                            Kaloji Narayana Rao was born on September 9, 1914, in Warangal, Telangana, to a middle-class Telugu family. His father, Kaloji Ranga Rao, was a postal employee, and his mother, Ramabayamma, nurtured his early interest in literature. Kaloji studied at Osmania University, Hyderabad, where he was exposed to nationalist ideas. His early exposure to social inequalities shaped his poetic voice, which he honed through self-study and community engagement.
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content">
+                            Kaloji was an active participant in India’s freedom struggle, joining the Arya Samaj and Andhra Mahasabha in the 1930s. He opposed the Nizam’s rule in Hyderabad and was imprisoned multiple times for his activism. A staunch supporter of the Telangana movement, he advocated for linguistic and cultural rights. Though not a formal politician, his poetry and speeches influenced political discourse, earning him respect as a voice of the oppressed.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content">
+                            Kaloji’s poetry, written in Telugu, is celebrated for its simplicity and emotional depth, addressing themes of social justice, human rights, and Telangana pride. His collections, such as <em>Ankitaalu</em> (1941) and <em>Kaloji Kavitalu</em> (1993), reflect his empathy for the marginalized. His prose and essays, like those in <em>Jeevana Sangraham</em>, critique societal inequalities, blending literary finesse with activist fervor.
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>Telangana Udyamam</em> (1960s): A poem celebrating Telangana’s cultural identity.</li>
+                                <li><em>Naa Godava</em> (1970): A powerful critique of social injustice.</li>
+                                <li><em>Prajala Manishi</em> (1980s): A tribute to the common people’s resilience.</li>
+                                <li><em>Bhookham</em> (1941): A poem on hunger and inequality.</li>
+                                <li><em>Swatantryam</em> (1940s): A call for freedom and dignity.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Received the Padma Vibhushan, India’s second-highest civilian award (1992).</li>
+                                <li>Honored with the Sahitya Akademi Fellowship (1997).</li>
+                                <li>Pioneered the Telangana literary movement.</li>
+                                <li>Founded the Telangana Rachayitala Sangham to promote Telugu literature.</li>
+                                <li>Recognized as “Praja Kavi” (People’s Poet) by the Telangana community.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content">
+                            Kaloji’s legacy endures through his poetry and advocacy for Telangana’s identity. His birth anniversary, September 9, is celebrated as Telangana Language Day. The Kaloji Narayana Rao University of Health Sciences in Warangal is named after him. His works continue to inspire social movements, and his statue in Hyderabad symbolizes his cultural impact.
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content">
+                            <div class="quote">“Poetry is the voice of the voiceless, the cry of the oppressed.”</div>
+                            <div class="quote">“Telangana is not just land; it’s the heartbeat of its people.”</div>
+                            <div class="quote">“Freedom means dignity for every human soul.”</div>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1914: Born in Warangal, Telangana.</li>
+                                <li>1930s: Joined the freedom struggle and Arya Samaj.</li>
+                                <li>1941: Published <em>Ankitaalu</em>, his first poetry collection.</li>
+                                <li>1968: Released <em>Jeevana Sangraham</em>.</li>
+                                <li>1970: Published <em>Naa Bharatam</em>.</li>
+                                <li>1992: Awarded the Padma Vibhushan.</li>
+                                <li>1993: Published <em>Kaloji Kavitalu</em>.</li>
+                                <li>1997: Received the Sahitya Akademi Fellowship.</li>
+                                <li>2002: Passed away in Warangal.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content">
+                            Kaloji Narayana Rao remained unmarried, dedicating his life to poetry, activism, and social causes. He had no children but considered the people of Telangana his family, often engaging with communities to inspire change. His simple lifestyle and commitment to social justice made him a beloved figure across generations.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="telangana.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('.content-section').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

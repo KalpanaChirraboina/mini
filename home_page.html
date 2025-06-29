@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poets of India - Home</title>
+    <meta name="description" content="Explore the literary legacy of poets from India's 29 states and Union Territories.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            background: #fbfcfc;
+        }
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: blur(10px);
+            -webkit-filter: blur(10px);
+        }
+        .main-container {
+            background: #fcfbfb;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        .nav-bar {
+            background: transparent;
+            box-shadow: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 1rem 0;
+        }
+        .nav-link {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            background: #0f766e;
+            padding: 0.5rem 1.25rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: #0f766e;
+        }
+        .nav-link.active {
+            color: #ffffff;
+            font-weight: 700;
+            background: #0f766e;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+        .carousel-item {
+            flex-shrink: 0;
+            width: 33.33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel img {
+            width: 90%;
+            height: 400px;
+            animation: fadeInImage 1s ease-out;
+            filter: none;
+        }
+        .image-name {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            width: fit-content;
+        }
+        .carousel-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 50%;
+            user-select: none;
+            z-index: 2;
+        }
+        .arrow-left {
+            left: 1rem;
+        }
+        .arrow-right {
+            right: 1rem;
+        }
+        .content-section {
+            width: 80%;
+            margin: 2rem auto;
+            animation: fadeInContent 1s ease-out;
+            position: relative;
+            z-index: 1;
+            color: black;
+            font-size: 160%;
+            text-align: justify;
+        }
+        @keyframes fadeInImage {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <img src="" alt="Background Image" class="background-image">
+
+    <div class="main-container">
+        <nav class="nav-bar py-4">
+            <div class="flex justify-between items-center px-4">
+                <h1 class="text-2xl font-bold text-gray-800">Poets of India</h1>
+                <ul class="flex space-x-4">
+                    <li><a href="home.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="map.html" class="nav-link"><i class="fas fa-map"></i> Map</a></li>
+                    <li><a href="chatbot.html" class="nav-link"><i class="fas fa-robot"></i> Chatbot</a></li>
+                    <li><a href="search.html" class="nav-link"><i class="fas fa-search"></i> Search</a></li>
+                    <li><a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="carousel" id="carousel">
+            <div class="carousel-item">
+                <img src="kaloji.jpeg" alt="Indian Poetry Manuscript">
+                <div class="image-name">Kaloji</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="sarojini.jpg" alt="Indian Poetry Manuscript">
+                <div class="image-name">Kaloji</div>
+            </div>
+            <div class="carousel-item">
+                <img src="arundhati.jpg" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="tagore.jpg" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="avvaiyar.jpg" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="bharathidasan.jpg" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+            <div class="carousel-item">
+                <img src="" alt="Bharatanatyam Dance">
+                <div class="image-name">C Narayana Reddy</div>
+            </div>
+        </div>
+        <div class="carousel-arrow arrow-left" onclick="moveCarousel(-1)">❮</div>
+        <div class="carousel-arrow arrow-right" onclick="moveCarousel(1)">❯</div>
+
+        <div class="content-section">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Significance of Indian Poets</h2>
+            <p class="text-gray-600 mb-4">
+                Indian poets from the 29 states and Union Territories have woven the essence of the nation’s soul into their verses, safeguarding its rich cultural tapestry across generations. Their writings, steeped in regional languages and traditions, not only mirror India’s vibrant diversity but also ignite social change and foster unity. From the revolutionary zeal of Subramania Bharati to the lyrical grace of Sarojini Naidu, their words transcend time, inspiring a deeper connection to India’s heritage and values.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const carousel = document.getElementById('carousel');
+        const items = carousel.children;
+        const totalItems = items.length;
+        const itemsPerView = 3;
+        let currentIndex = 0;
+
+        function moveCarousel(direction) {
+            currentIndex = (currentIndex + direction * itemsPerView) % (totalItems - itemsPerView + 1);
+            if (currentIndex < 0) {
+                currentIndex = 0;
+            }
+            carousel.style.transform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
+        }
+
+        function autoScroll() {
+            currentIndex = (currentIndex + itemsPerView) % (totalItems - itemsPerView + 1);
+            carousel.style.transform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
+        }
+
+        setInterval(autoScroll, 3000);
+    </script>
+</body>
+</html>

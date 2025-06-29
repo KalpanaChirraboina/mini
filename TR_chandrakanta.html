@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chandra Kanta Murasingh - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Chandra Kanta Murasingh, the renowned poet from Tripura, known for his evocative poetry in Kokborok and Bengali, capturing the socio-cultural landscape of Northeast India.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Chandra Kanta Murasingh</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <aside class="w-full md:w-1/3 sidebar p-6" aria-labelledby="profile-heading">
+                <img src="chandrakanta.jpg" alt="Portrait of Chandra Kanta Murasingh" class="profile-img w-full mb-6">
+                <h2 id="profile-heading" class="font-semibold text-gray-800">Chandra Kanta Murasingh</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Voice of Tripura’s Indigenous Soul</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> April 1, 1957, Tuiwandal, Tripura</p>
+                    <p><strong>Died:</strong> March 27, 2023, Agartala</p>
+                    <p><strong>State:</strong> Tripura</p>
+                    <p><strong>Language:</strong> Kokborok, Bengali</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> Ramesh School, Udaipur</p>
+                    <p><strong>Occupation:</strong> Poet, Bank Officer, Director of Northeast Colloquial Language Centre</p>
+                    <p><strong>Notable Role:</strong> Pioneer of Kokborok Literature</p>
+                </div>
+            </aside>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <main class="w-full md:w-2/3 content-section" aria-labelledby="content-heading">
+                <h2 id="content-heading" class="sr-only">Chandra Kanta Murasingh Profile Details</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Chandra Kanta Murasingh was a distinguished poet from Tripura, celebrated for his poignant works in Kokborok and Bengali. Born in Tuiwandal, he captured the socio-cultural struggles and natural beauty of Tripura in his poetry, reflecting the region’s indigenous ethos. A recipient of the Sahitya Akademi’s Bhasha Samman, his translations and original works enriched Northeast Indian literature until his passing in 2023.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <section class="mb-6" aria-labelledby="books-heading">
+                    <h3 id="books-heading" class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+<p><strong>Haping Garingo Chibuksa Ringo (1987):</strong> A collection of Kokborok poems.</p>
+<p><strong>Holong Kok Sao Bolong Bisingo (1995):</strong> Poems reflecting Tripura’s indigenous life.</p>
+<p><strong>Lok Chethuwang Lok (1999):</strong> Poetic narratives of Tripura’s landscape.</p>
+<p><strong>Pindi Watawi Pin (1999):</strong> Kokborok poetry on social issues.</p>
+<p><strong>Ruphaini Buduk Ani Nogo (2002):</strong> A blend of nature and social commentary.</p>
+                        </ul>
+                    </div>
+                </section>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="early-life-heading" onclick="toggleContent('early-life')" role="button" aria-expanded="false" aria-controls="early-life">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content" aria-labelledby="early-life-heading">
+                            Born on April 1, 1957, in Tuiwandal, Tripura, Chandra Kanta Murasingh grew up in a family of shifting cultivators. His father, Syampada Murasingh, ensured he attended Ramesh School in Udaipur, despite early hardships. His exposure to Bengali literature during his time in Imphal (1973–1976) while working for the Indian Postal Service shaped his poetic voice, blending indigenous Kokborok traditions with literary influences.
+                        </div>
+                    </section>
+                    <!-- Political Career -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="political-career-heading" onclick="toggleContent('political-career')" role="button" aria-expanded="false" aria-controls="political-career">Political Career</h3>
+                        <div id="political-career" class="toggle-content" aria-labelledby="political-career-heading">
+                            While not a politician, Murasingh’s poetry addressed political turmoil in Tripura, critiquing violence between extremists and the Indian Army. His works chronicled the marginalized voices of indigenous communities, advocating for their socio-cultural identity. As a member of the Tripura Tribal Language Commission, he promoted Kokborok, amplifying its literary presence.
+                        </div>
+                    </section>
+                    <!-- Literary Contributions -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="literary-contributions-heading" onclick="toggleContent('literary-contributions')" role="button" aria-expanded="false" aria-controls="literary-contributions">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content" aria-labelledby="literary-contributions-heading">
+                            Murasingh’s poetry in Kokborok and Bengali captured Tripura’s socio-political struggles and natural beauty. His translation of Rabindranath Tagore’s <em>Gitanjali</em> into Kokborok was a landmark achievement. With seven poetry collections, his works appeared in <em>Indian Literature</em>, Oxford, and Penguin anthologies, elevating Kokborok’s global reach. He also worked on musical notation for Kokborok folk songs.
+                        </div>
+                    </section>
+                    <!-- Selected Poems -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="selected-poems-heading" onclick="toggleContent('selected-poems')" role="button" aria-expanded="false" aria-controls="selected-poems">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content" aria-labelledby="selected-poems-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>The Thud of Boots</em> (1999): Reflects on violence in Tripura.</li>
+                                <li><em>Madhavi Fragrance</em> (2009): Blends nature with the acrid reality of conflict.</li>
+                                <li><em>Rivulet’s Cadence</em> (1995): Evokes Tripura’s lost natural harmony.</li>
+                                <li><em>Seven Hills</em> (1987): Celebrates Tripura’s landscape.</li>
+                                <li><em>Voices of the Marginalized</em> (2002): Chronicles indigenous struggles.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Major Achievements -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="achievements-heading" onclick="toggleContent('achievements')" role="button" aria-expanded="false" aria-controls="achievements">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content" aria-labelledby="achievements-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Received Sahitya Akademi’s Bhasha Samman Award (1997) for Kokborok literature.</li>
+                                <li>Awarded “True Legend of North-East India” by The Telegraph Group.</li>
+                                <li>Translated Tagore’s <em>Gitanjali</em> into Kokborok, a monumental work.</li>
+                                <li>Received Rabindra Puraskar from Tripura State Government.</li>
+                                <li>Participated in Bangladesh’s National Poetry Festival thrice.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Legacy and Honors -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="legacy-heading" onclick="toggleContent('legacy')" role="button" aria-expanded="false" aria-controls="legacy">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content" aria-labelledby="legacy-heading">
+                            Murasingh’s work immortalized Tripura’s indigenous culture, earning him tributes at Nazrul Kala Kshetra and Rabindra Satabarshiki Bhawan after his passing in 2023. As Director of the Northeast Colloquial Language Centre, he promoted Kokborok. His poetry remains a beacon for Northeast Indian literature, with posthumous honors from Tripura’s Chief Minister and literary bodies.
+                        </div>
+                    </section>
+                    <!-- Famous Quotes -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="quotes-heading" onclick="toggleContent('quotes')" role="button" aria-expanded="false" aria-controls="quotes">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content" aria-labelledby="quotes-heading">
+                            <div class="quote">“The fragrance of flowery garlands haunts the seven hills.”</div>
+                            <div class="quote">“The rivulet’s song is drowned by the thud of boots.”</div>
+                            <div class="quote">“Poetry is the voice of a people’s unspoken pain.”</div>
+                        </div>
+                    </section>
+                    <!-- Timeline of Important Events -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="timeline-heading" onclick="toggleContent('timeline')" role="button" aria-expanded="false" aria-controls="timeline">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content" aria-labelledby="timeline-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1957: Born in Tuiwandal, Tripura.</li>
+                                <li>1973: Completed schooling at Ramesh School, Udaipur.</li>
+                                <li>1987: Published <em>Haping Garingo Chibuksa Ringo</em>.</li>
+                                <li>1997: Received Sahitya Akademi’s Bhasha Samman Award.</li>
+                                <li>2007: Kokborok poems published in <em>Indian Literature</em>.</li>
+                                <li>2023: Passed away in Agartala.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Personal Life and Children -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="personal-heading" onclick="toggleContent('personal')" role="button" aria-expanded="false" aria-controls="personal">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content" aria-labelledby="personal-heading">
+                            Chandra Kanta Murasingh was married and had two sons and a daughter. Living in Abhoynagar, Agartala, he balanced his career at Tripura Gramin Bank with his literary pursuits. Known for his amiable nature, he remained deeply connected to his ancestral village of Tuiwandal, where his last rites were performed in 2023.
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="tripura.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const heading = document.querySelector(`[aria-controls="${sectionId}"]`);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+                document.querySelector(`[aria-controls="${el.id}"]`).setAttribute('aria-expanded', 'false');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                heading.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('main').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

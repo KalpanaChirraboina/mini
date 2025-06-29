@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukumar Ray - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Sukumar Ray, a celebrated Bengali poet and writer from West Bengal, renowned for his whimsical nonsense verse and children’s literature.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Sukumar Ray</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6">
+                <img src="sukumar.jpg" alt="Sukumar Ray Photo" class="profile-img w-full mb-6">
+                <h2 class="font-semibold text-gray-800">Sukumar Ray</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Master of Nonsense Verse</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> October 30, 1887, Kolkata, West Bengal</p>
+                    <p><strong>Died:</strong> September 10, 1923, Kolkata, West Bengal</p>
+                    <p><strong>State:</strong> West Bengal</p>
+                    <p><strong>Language:</strong> Bengali</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> Presidency College, Kolkata; studied in England</p>
+                    <p><strong>Occupation:</strong> Poet, Writer, Illustrator, Publisher</p>
+                    <p><strong>Notable Role:</strong> Editor of <i>Sandesh</i> magazine</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section">
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Sukumar Ray was a pioneering Bengali poet and writer from West Bengal, celebrated for his whimsical nonsense verse and children’s literature. Known for his playful yet profound poems and stories, he created a unique genre blending humor, satire, and imagination. His iconic work, <em>Abol Tabol</em>, and his role in editing <i>Sandesh</i> magazine have made him a beloved figure in Bengali culture, influencing generations of readers and writers.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <div class="mb-6">
+                    <h3 class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/Abol-Tabol-Sukumar-Ray/dp/1984288741" target="_blank" class="text-blue-600 hover:underline">Abol Tabol</a> (1923): A collection of nonsense poems, his most famous work.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Hajabarala-Sukumar-Ray/dp/198601813X" target="_blank" class="text-blue-600 hover:underline">HaJaBaRaLa</a> (1921): A whimsical children’s story.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Pagla-Dashu-Sukumar-Ray/dp/1985836114" target="_blank" class="text-blue-600 hover:underline">Pagla Dashu</a> (1920s): A collection of humorous short stories (available on Archive.org).</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Lakkhaner-Shaktishel-Bengali-Version-Sukumar/dp/B0D9MDG9PR" target="_blank" class="text-blue-600 hover:underline">Lakkhaner Shaktishel</a> (1922): A satirical play.</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content">
+                            Sukumar Ray was born on October 30, 1887, in Kolkata, West Bengal, to a prominent literary family. His father, Upendrakishore Ray Chowdhury, was a writer and publisher. Sukumar studied physics and chemistry at Presidency College, Kolkata, and later trained in printing technology in England. His exposure to Western literature, especially Edward Lear and Lewis Carroll, shaped his unique nonsense style.
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content">
+                            Sukumar Ray did not engage in formal politics but subtly critiqued societal norms and colonial rule through his satirical and humorous writings. His works, like <em>Lakkhaner Shaktishel</em>, used wit to comment on bureaucracy and social issues, aligning with the cultural nationalism of early 20th-century Bengal, particularly during the Swadeshi movement.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content">
+                            Sukumar Ray revolutionized Bengali children’s literature with his nonsense verse and stories, blending humor, wordplay, and social satire. His masterpiece, <em>Abol Tabol</em>, is a landmark in Bengali poetry, while <em>HaJaBaRaLa</em> and <em>Pagla Dashu</em> captivated young readers. As editor of <i>Sandesh</i>, he promoted children’s literature, leaving a lasting legacy in Bengali culture.
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>Kumropotash</em> (1923): A whimsical poem from <em>Abol Tabol</em>.</li>
+                                <li><em>Bhondar Hawa</em> (1923): A playful nonsense verse.</li>
+                                <li><em>Tuntunir Boi</em> (1923): A humorous poem about a tailor bird.</li>
+                                <li><em>Gondho Bichar</em> (1923): A satirical poem from <em>Abol Tabol</em>.</li>
+                                <li><em>Heshoram Hushiarer Diary</em> (1920s): A quirky narrative poem.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Authored <em>Abol Tabol</em>, a cornerstone of Bengali nonsense literature.</li>
+                                <li>Revived and edited <i>Sandesh</i>, a leading children’s magazine.</li>
+                                <li>Pioneered nonsense verse in Bengali, influencing children’s literature.</li>
+                                <li>Created iconic characters like Pagla Dashu and Heshoram Hushiar.</li>
+                                <li>Introduced advanced printing techniques to Bengali publishing.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content">
+                            Sukumar Ray’s legacy endures through his timeless nonsense verse and stories, cherished by children and adults alike. <em>Abol Tabol</em> remains a cultural treasure, and <i>Sandesh</i> continues under his family’s legacy. His works are celebrated in Bengali literary festivals, and his influence is seen in modern Bengali children’s literature and theater.
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content">
+                            <div class="quote">“In nonsense lies the freedom of imagination.”</div>
+                            <div class="quote">“A child’s laughter is the heart of poetry.”</div>
+                            <div class="quote">“Words can dance when the mind is free.”</div>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1887: Born in Kolkata, West Bengal.</li>
+                                <li>1911–1914: Studied printing technology in England.</li>
+                                <li>1915: Took over editorship of <i>Sandesh</i> magazine.</li>
+                                <li>1921: Published <em>HaJaBaRaLa</em>.</li>
+                                <li>1922: Published <em>Lakkhaner Shaktishel</em>.</li>
+                                <li>1923: Published <em>Abol Tabol</em>.</li>
+                                <li>1923: Passed away in Kolkata.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content">
+                            Sukumar Ray married Suprabha Das and had one son, Satyajit Ray, who became a legendary filmmaker. Living in Kolkata, Sukumar balanced his creative pursuits with running the family’s printing press and <i>Sandesh</i> magazine. His short life, cut short by illness at 35, was marked by boundless creativity and dedication to Bengali literature.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="westbengal.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('.content-section').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

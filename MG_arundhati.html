@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arundhati Roy - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Arundhati Roy, a renowned Indian author, poet, and activist from Meghalaya, celebrated for her contributions to literature and social justice.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Arundhati Roy</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <aside class="w-full md:w-1/3 sidebar p-6" aria-labelledby="profile-heading">
+                <img src="arundhati.jpg" alt="Portrait of Arundhati Roy" class="profile-img w-full mb-6">
+                <h2 id="profile-heading" class="font-semibold text-gray-800">Arundhati Roy</h2>
+                <p class="text-gray-600 mb-4 subtitle">Voice of Social Justice</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> November 24, 1961, Shillong, Meghalaya</p>
+                    <p><strong>Died:</strong> Alive</p>
+                    <p><strong>State:</strong> Meghalaya</p>
+                    <p><strong>Language:</strong> English</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> B.Arch., School of Planning and Architecture, Delhi</p>
+                    <p><strong>Occupation:</strong> Author, Poet, Activist</p>
+                    <p><strong>Notable Role:</strong> Booker Prize Winner (1997)</p>
+                </div>
+            </aside>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <main class="w-full md:w-2/3 content-section" aria-labelledby="content-heading">
+                <h2 id="content-heading" class="sr-only">Arundhati Roy Profile Details</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Arundhati Roy, born in 1961 in Shillong, Meghalaya, is a globally acclaimed Indian author, poet, and activist. Best known for her Booker Prize-winning novel <em>The God of Small Things</em> (1997), Roy’s lyrical prose and poetic sensibility have made her a prominent literary figure. Her activism and essays on social justice, environmental issues, and human rights have further solidified her as a powerful voice for the marginalized.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <section class="mb-6" aria-labelledby="books-heading">
+                    <h3 id="books-heading" class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/God-Small-Things-Booker-Winner/dp/014302857X/ref=sr_1_1?crid=1SA52J8YX801L&dib=eyJ2IjoiMSJ9.p6EH2x4gdoMGbWf4bEDP7tMtxnnCRU6iQiDH36c4mJd4PXlEI53czEeAbz-nk2DwC7qVrJMmU6eoax6ZTHJnuXy9USq_ONvfBRk2fmnq31zN_K9AQWFuYSgUV0o7_WBheCMPG4kv2Q-MtusJ566fyJCwNxTJdbDHSiyw9NTgR4ri-BJDQEdkbYPa-IuZhHldnR7zM6102thBHdSbGOlkOuFAsxycGojLxBWEdF22oIU.Is7eRlt2E3gtP0WOds-AELzTEgb6f3vpfkuS7JQbq5o&dib_tag=se&keywords=the+god+of+small+things+-+arundhati+roy&nsdOptOutParam=true&qid=1750434203&sprefix=the+god+of+s%2Caps%2C237&sr=8-1" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">The God of Small Things</a> (1997): A novel that won the Booker Prize.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Ministry-Utmost-Happiness-Arundhati-Roy/dp/0143442767/ref=sr_1_1?crid=1NK1PWWTAHPHY&dib=eyJ2IjoiMSJ9.l3JdLZT16EMHK00tg2eHnb7uX-3lkcscBL5JB0ssUPeuTFdH9B0K6-13KemOWugp5zItNSHyuZfXJRUxg4CB7Ng1nxReZvI015NkoVhhNKVZme0NwyK4gw9gv0X3XfDbsEl_IYkZS8pQ47AJmnJV4ybMR96CV5g4Ql1bd7gwJ_ZN340XO4hLORRbvwZ5bke8K9s3K4u_zFlZUm0MIYOiSPhk633Ftltl8pu8EE5nTQE.fjhDSXauKcSP_61-utsavalmZOqPzKCQf9yc3r1NIT4&dib_tag=se&keywords=the+ministry+of+utmost+happiness+-+arundhati+roy&nsdOptOutParam=true&qid=1750434266&sprefix=the+ministry+of+utmost+happiness+-+arundhati+roy%2Caps%2C195&sr=8-1" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">The Ministry of Utmost Happiness</a> (2017): Her second novel, longlisted for the Man Booker Prize.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Algebra-Infinite-Justice-Arundhati-Roy/dp/0143419285/ref=sr_1_1?crid=1XHFWST3AIPGO&dib=eyJ2IjoiMSJ9.YCpldgKCchT8lglv-X-2CowNjAzVhQ85LlD07bXm7SApFVfh0LXOnxrrp1Ti3dcLzOCLzSSby6QyQr1BB8cKcfqW_nJ3SG99vgYueNEUz1I.kpe58SUxIVk-6chBuFrzbELA8jurZb6tk-DRkH_USyI&dib_tag=se&keywords=algebra+of+infinite+justice-+arundhati+roy&qid=1750434336&sprefix=the+algebra++-+arundhati+roy%2Caps%2C193&sr=8-1" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">The Algebra of Infinite Justice</a> (2001): A collection of essays on politics and social issues.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/My-Seditious-Heart-Collected-Non-fiction/dp/0670092495/ref=sr_1_1?crid=KCUZIIOU8JM8&dib=eyJ2IjoiMSJ9.9xXY5tU7OfdrA_1hRxstwCmx6AKBxZWkuOfzD6QlaLtscdk1ZzZHRzeC8VEwEKy9.b63YVBHORkgVeNAZ5mQO6HrsOneUCK9TIUUWh_Q6NyM&dib_tag=se&keywords=my+seditious+heart-+arundhati+roy&qid=1750434386&sprefix=my+seditious+heart-+arundhati+roy%2Caps%2C190&sr=8-1" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">My Seditious Heart</a> (2019): Collected nonfiction essays.</li>
+                        </ul>
+                    </div>
+                </section>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="early-life-heading" onclick="toggleContent('early-life')" role="button" aria-expanded="false" aria-controls="early-life">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content" aria-labelledby="early-life-heading">
+                            Born on November 24, 1961, in Shillong, Meghalaya, Arundhati Roy grew up in a diverse cultural environment. She studied architecture at the School of Planning and Architecture, Delhi, but pursued a career in writing and filmmaking. Her early experiences in Northeast India and Kerala influenced her poetic and narrative style, marked by vivid imagery and social consciousness.
+                        </div>
+                    </section>
+                    <!-- Literary Career -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="literary-career-heading" onclick="toggleContent('literary-career')" role="button" aria-expanded="false" aria-controls="literary-career">Literary Career</h3>
+                        <div id="literary-career" class="toggle-content" aria-labelledby="literary-career-heading">
+                            Roy gained international acclaim with her debut novel, <em>The God of Small Things</em> (1997), which won the Booker Prize. Her second novel, <em>The Ministry of Utmost Happiness</em> (2017), explored India’s socio-political landscape. Her essays, published in collections like <em>The Algebra of Infinite Justice</em>, showcase her poetic prose and incisive critique of global and Indian issues.
+                        </div>
+                    </section>
+                    <!-- Literary Contributions -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="literary-contributions-heading" onclick="toggleContent('literary-contributions')" role="button" aria-expanded="false" aria-controls="literary-contributions">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content" aria-labelledby="literary-contributions-heading">
+                            Roy’s works blend poetic lyricism with sharp social commentary, addressing themes of caste, gender, and environmental justice. Her novels and essays have redefined Indian English literature, giving voice to marginalized communities. Her activism, reflected in her writing, has inspired global discussions on human rights and anti-imperialism, making her a literary and political icon.
+                        </div>
+                    </section>
+                    <!-- Selected Poems -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="selected-poems-heading" onclick="toggleContent('selected-poems')" role="button" aria-expanded="false" aria-controls="selected-poems">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content" aria-labelledby="selected-poems-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>The River</em>: A poetic excerpt from her prose, reflecting on nature and loss.</li>
+                                <li><em>The Broken Republic</em>: A lyrical essay with poetic undertones on tribal struggles.</li>
+                                <li><em>In Which Annie Gives It Those Ones</em>: Poetic dialogues from her screenplay.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Major Achievements -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="achievements-heading" onclick="toggleContent('achievements')" role="button" aria-expanded="false" aria-controls="achievements">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content" aria-labelledby="achievements-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Won the Booker Prize for <em>The God of Small Things</em> (1997).</li>
+                                <li>Received the Sydney Peace Prize (2004) for her social activism.</li>
+                                <li>Honored with the Sahitya Akademi Award (2006), which she declined in protest.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Legacy and Honors -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="legacy-heading" onclick="toggleContent('legacy')" role="button" aria-expanded="false" aria-controls="legacy">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content" aria-labelledby="legacy-heading">
+                            Arundhati Roy’s literary and activist legacy continues to influence writers and social movements worldwide. Her works are studied in universities, and her advocacy for the disenfranchised has earned her numerous accolades, including the Norman Mailer Prize for Distinguished Writing (2011). She remains a leading voice in global literature and activism.
+                        </div>
+                    </section>
+                    <!-- Famous Quotes -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="quotes-heading" onclick="toggleContent('quotes')" role="button" aria-expanded="false" aria-controls="quotes">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content" aria-labelledby="quotes-heading">
+                            <div class="quote">“The only dream worth having is to dream that you will live while you’re alive and die only when you’re dead.”</div>
+                            <div class="quote">“Another world is not only possible, she is on her way. On a quiet day, I can hear her breathing.”</div>
+                        </div>
+                    </section>
+                    <!-- Timeline of Important Events -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="timeline-heading" onclick="toggleContent('timeline')" role="button" aria-expanded="false" aria-controls="timeline">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content" aria-labelledby="timeline-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1961: Born in Shillong, Meghalaya.</li>
+                                <li>1997: Published <em>The God of Small Things</em>, winning the Booker Prize.</li>
+                                <li>2001: Released <em>The Algebra of Infinite Justice</em>.</li>
+                                <li>2004: Awarded the Sydney Peace Prize.</li>
+                                <li>2017: Published <em>The Ministry of Utmost Happiness</em>.</li>
+                                <li>2019: Released <em>My Seditious Heart</em>.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Personal Life and Children -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="personal-heading" onclick="toggleContent('personal')" role="button" aria-expanded="false" aria-controls="personal">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content" aria-labelledby="personal-heading">
+                            Arundhati Roy is married to filmmaker Pradip Krishen and has no children. Known for her private nature, she divides her time between writing and activism. Her experiences in Meghalaya and Kerala, along with her architectural background, deeply influence her poetic and narrative works, reflecting her commitment to social justice.
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="meghalaya.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const heading = document.querySelector(`[aria-controls="${sectionId}"]`);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+                document.querySelector(`[aria-controls="${el.id}"]`).setAttribute('aria-expanded', 'false');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                heading.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('main').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

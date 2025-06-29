@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaddar - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Gaddar, the revolutionary poet and balladeer of Telangana, known for his songs of resistance and social justice.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .sidebar {
+            position: fixed;
+            top: 2rem;
+            left: calc((100% - 1280px) / 2 + 2rem);
+            width: calc(25% - 1.5rem);
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-right: 1px solid #d1d5db;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 10;
+        }
+        .content-section {
+            margin-left: calc(25% + 1.375rem);
+            width: calc(75% - 1.375rem);
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2.5rem 2.5rem calc(2.5rem + 0.5cm);
+            overflow-y: auto;
+            max-height: calc(100vh - 4rem);
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '✨';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .language-select {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .language-select:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .language-select {
+            width: 100%;
+            max-width: 200px;
+            padding: 0.75rem;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: left;
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        /* Google Translate Widget Styling */
+        #google_translate_element {
+            display: none; /* Hidden by default, shown via JS */
+            margin-top: 1rem;
+            max-width: 200px;
+        }
+        .goog-te-gadget {
+            font-size: 0 !important; /* Hide default text */
+        }
+        .goog-te-combo {
+            width: 100% !important;
+            padding: 0.5rem !important;
+            border-radius: 6px !important;
+            border: none !important;
+            background: white !important;
+            color: #1f2937 !important;
+            font-size: 1rem !important;
+            cursor: pointer !important;
+        }
+        .goog-te-gadget .goog-te-combo:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #3b82f6;
+        }
+        .goog-te-banner-frame {
+            display: none !important; /* Hide Google Translate banner */
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+                max-width: none;
+                margin-bottom: 1.5rem;
+                border-right: none;
+            }
+            .content-section {
+                margin-left: 0;
+                width: 100%;
+                max-height: none;
+                padding: 2.5rem;
+            }
+            .language-select, #google_translate_element {
+                max-width: 100%;
+            }
+            .section-header-title::after {
+                width: 100%;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Sidebar: Photo and Basic Details -->
+        <div class="sidebar">
+            <img src="gaddar1.jpg" alt="Gaddar Photo" class="profile-img w-full mb-6">
+            <h2 class="font-semibold text-gray-800" data-lang-key="sidebar.name">Gaddar</h2>
+            <p class="text-gray-600 mb-4 subtitle" data-lang-key="sidebar.subtitle">People's Singer</p>
+            <div class="space-y-2 text-gray-700 sidebar-details">
+                <p><strong data-lang-key="sidebar.born.label">Born:</strong> <span data-lang-key="sidebar.born">Jan 31, 1949, Toopran</span></p>
+                <p><strong data-lang-key="sidebar.died.label">Died:</strong> <span data-lang-key="sidebar.died">Aug 6, 2023, Hyderabad</span></p>
+                <p><strong data-lang-key="sidebar.state.label">State:</strong> <span data-lang-key="sidebar.state">Telangana</span></p>
+                <p><strong data-lang-key="sidebar.language.label">Language:</strong> <span data-lang-key="sidebar.language">Telugu</span></p>
+                <p><strong data-lang-key="sidebar.nationality.label">Nationality:</strong> <span data-lang-key="sidebar.nationality">Indian</span></p>
+                <p><strong data-lang-key="sidebar.occupation.label">Occupation:</strong> <span data-lang-key="sidebar.occupation">Telugu poet, revolutionary balladeer, singer, and social activist.</span></p>
+            </div>
+        </div>
+        <!-- Right Content: Heading, Language Selector, and Collapsible Sections -->
+        <div class="content-section">
+            <!-- Language Selector -->
+            <div class="mb-4 flex justify-end">
+                <button id="language-toggle" class="language-select text-white px-4 py-2 rounded-lg font-semibold">Select Language</button>
+            </div>
+            <div id="google_translate_element" class="flex justify-end"></div>
+            <header class="text-center mb-8 animate-fadeIn">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title" data-lang-key="header.title">Gaddar</h1>
+            </header>
+            <p class="text-gray-600 mb-6 leading-relaxed" data-lang-key="intro">
+                Gaddar, born Gummadi Vittal Rao, was a revolutionary Telugu poet, balladeer, and activist whose songs fueled the Telangana statehood movement and championed social justice. Known as the “People’s Singer,” he blended Marxist and Ambedkarite ideals to fight for Dalits and marginalized communities, leaving a lasting legacy in Telangana’s cultural and political landscape.
+            </p>
+            <hr class="section-divider">
+            <!-- Songs and Performances -->
+            <div class="mb-6">
+                <h3 class="books-header" data-lang-key="songs.header">Songs and Performances</h3>
+                <div class="text-gray-600">
+                    <ul class="list-none space-y-3">
+                        <li class="book-link"><a href="https://www.youtube.com/watch?v=6xYkCD3qPE8" target="_blank" class="text-blue-600 hover:underline" data-lang-key="songs.podusthunna">Podusthunna Poddumeeda</a> (2011): <span data-lang-key="songs.podusthunna.desc">Anthem of the Telangana movement, featured in <em>Jai Bolo Telangana</em>.</span></li>
+                        <li class="book-link"><a href="https://www.youtube.com/watch?v=5YkQ3kP1i1E" target="_blank" class="text-blue-600 hover:underline" data-lang-key="songs.bandenaka">Bandenaka Bandi Katti</a> (1978): <span data-lang-key="songs.bandenaka.desc">Revolutionary song from <em>Maa Bhoomi</em>, against Nizam rule.</span></li>
+                        <li class="book-link"><a href="https://www.youtube.com/watch?v=0q9zZ6Z6Z6w" target="_blank" class="text-blue-600 hover:underline" data-lang-key="songs.malle">Malle Theegaku</a> (1993): <span data-lang-key="songs.malle.desc">Song for the marginalized, featured in <em>Orey Rikshaw</em>.</span></li>
+                        <li class="book-link"><a href="https://www.youtube.com/watch?v=8f2zZ2Z2Z2Z" target="_blank" class="text-blue-600 hover:underline" data-lang-key="songs.vuru">Vuru Manadira</a>: <span data-lang-key="songs.vuru.desc">Popularized folk song on rural struggles, originally by Yadagari.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="section-divider">
+            <div class="space-y-4">
+                <!-- Early Life and Education -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')" data-lang-key="early-life.header">Early Life and Education</h3>
+                    <div id="early-life" class="toggle-content">
+                        <span data-lang-key="early-life.content">Born on January 31, 1949, in Toopran, Medak district, to Dalit laborers Lacchumamma and Seshaiah, Gaddar was influenced by his father’s Ambedkarite ideas. He studied engineering at Osmania University, Hyderabad, but dropped out due to financial struggles, later joining revolutionary movements.</span>
+                    </div>
+                </div>
+                <!-- Political Career -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')" data-lang-key="political-career.header">Political Career</h3>
+                    <div id="political-career" class="toggle-content">
+                        <span data-lang-key="political-career.content">Gaddar joined the Naxalite movement in the 1970s, becoming a key figure in the CPI (Marxist-Leninist) People’s War. He went underground in the 1980s, survived an assassination attempt in 1997, and left the Maoists in 2010 to support the Telangana statehood movement. In 2018, he voted for the first time and later formed the Gaddar Praja Party.</span>
+                    </div>
+                </div>
+                <!-- Literary Contributions -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')" data-lang-key="literary-contributions.header">Literary Contributions</h3>
+                    <div id="literary-contributions" class="toggle-content">
+                        <span data-lang-key="literary-contributions.content">As a poet and balladeer, Gaddar founded Jana Natya Mandali, the cultural wing of CPI (ML) People’s War. His songs, blending folk and revolutionary themes, addressed caste oppression, feudalism, and Telangana’s struggles, inspiring masses through performances across villages.</span>
+                    </div>
+                </div>
+                <!-- Selected Songs -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-songs')" data-lang-key="selected-songs.header">Selected Songs</h3>
+                    <div id="selected-songs" class="toggle-content">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><em data-lang-key="songs.podusthunna">Podusthunna Poddumeeda</em> (2011): <span data-lang-key="songs.podusthunna.desc">Telangana movement anthem.</span></li>
+                            <li><em data-lang-key="songs.bandenaka">Bandenaka Bandi Katti</em> (1978): <span data-lang-key="songs.bandenaka.desc">Song against Nizam oppression.</span></li>
+                            <li><em data-lang-key="songs.malle">Malle Theegaku</em> (1993): <span data-lang-key="songs.malle.desc">Tribute to marginalized workers.</span></li>
+                            <li><em data-lang-key="songs.vuru">Vuru Manadira</em>: <span data-lang-key="songs.vuru.desc">Folk song on rural struggles.</span></li>
+                            <li><em data-lang-key="songs.amma">Amma Telanganama</em> (2009): <span data-lang-key="songs.amma.desc">Ode to Telangana’s identity.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Major Achievements -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')" data-lang-key="achievements.header">Major Achievements</h3>
+                    <div id="achievements" class="toggle-content">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li data-lang-key="achievements.nandi">Awarded Nandi Award for Best Lyricist (1995) and Best Male Playback Singer (2011).</li>
+                            <li data-lang-key="achievements.kaloji">Received Kaloji Narayana Rao Award (2011) and Sahitya Akademi Award (2016).</li>
+                            <li data-lang-key="achievements.posthumous">Posthumous ₹1 crore award for Telangana movement contributions.</li>
+                            <li data-lang-key="achievements.jana">Founded Jana Natya Mandali, cultural wing of CPI (ML).</li>
+                            <li data-lang-key="achievements.inspired">Inspired Telangana statehood through revolutionary songs.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Legacy and Honors -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')" data-lang-key="legacy.header">Legacy and Honors</h3>
+                    <div id="legacy" class="toggle-content">
+                        <span data-lang-key="legacy.content">Gaddar’s songs remain anthems of resistance, inspiring Telangana’s cultural identity. The Telangana government honors him with the Gaddar Awards for film and theater and celebrates his birth anniversary as Gaddar Jayanthi. His legacy continues to empower Dalits and activists.</span>
+                    </div>
+                </div>
+                <!-- Famous Quotes -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')" data-lang-key="quotes.header">Famous Quotes</h3>
+                    <div id="quotes" class="toggle-content">
+                        <div class="quote" data-lang-key="quotes.quote1">“My song is my life, a continuous fight for justice.”</div>
+                        <div class="quote" data-lang-key="quotes.quote2">“The heartbeat of the people is my strength.”</div>
+                        <div class="quote" data-lang-key="quotes.quote3">“Save the Constitution, save democracy, save India.”</div>
+                    </div>
+                </div>
+                <!-- Timeline of Important Events -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')" data-lang-key="timeline.header">Timeline of Important Events</h3>
+                    <div id="timeline" class="toggle-content">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li data-lang-key="timeline.1949">1949: Born in Toopran, Medak, Telangana.</li>
+                            <li data-lang-key="timeline.1972">1972: Founded Jana Natya Mandali with Art Lovers Association.</li>
+                            <li data-lang-key="timeline.1975">1975: Arrested during the Emergency, later went underground.</li>
+                            <li data-lang-key="timeline.1997">1997: Survived assassination attempt, bullet lodged in spine.</li>
+                            <li data-lang-key="timeline.2010">2010: Left Maoists, joined Telangana statehood movement.</li>
+                            <li data-lang-key="timeline.2011">2011: Released <em>Podusthunna Poddumeeda</em> for Telangana.</li>
+                            <li data-lang-key="timeline.2018">2018: Voted in Telangana Assembly elections.</li>
+                            <li data-lang-key="timeline.2023">2023: Formed Gaddar Praja Party; died in Hyderabad.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Personal Life -->
+                <div>
+                    <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')" data-lang-key="personal.header">Personal Life</h3>
+                    <div id="personal" class="toggle-content">
+                        <span data-lang-key="personal.content">Gaddar, born to Lacchumamma and Seshaiah, married Vimala and had a son, Chandrakiran, who died in 2003. Despite surviving an assassination attempt in 1997, he remained committed to activism, living in Hyderabad until his death in 2023.</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Back to Poets List Button -->
+            <div class="text-center mt-8">
+                <a href="telangana.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold" data-lang-key="back.button">Back to Telangana Poets</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            content.classList.toggle('active');
+        }
+
+        // Initialize Google Translate
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,te,hi,ta,kn,es,fr,zh-CN,de,ja,ar,ru', // Sample languages; Google supports many more
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+
+        // Toggle Google Translate widget visibility
+        document.getElementById('language-toggle').addEventListener('click', function() {
+            const translateElement = document.getElementById('google_translate_element');
+            translateElement.style.display = translateElement.style.display === 'block' ? 'none' : 'block';
+        });
+    </script>
+</body>
+</html>

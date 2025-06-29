@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Poet Name] - Poet Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+        }
+        .content-section {
+            background-color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: cover;
+            border: 4px solid #e9ecef;
+        }
+        .toggle-content {
+            display: none;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">[Poet Name] - Poet Profile</h1>
+            <p class="text-lg text-gray-600">Celebrating the Literary Legends of India</p>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6 rounded-lg">
+                <img src="[Image URL]" alt="[Poet Name] Photo" class="profile-img w-full rounded-lg mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">[Poet Name]</h2>
+                <p class="text-gray-600 mb-4">[Nickname or Title, e.g., Nightingale of India]</p>
+                <div class="space-y-2">
+                    <p><strong>Born:</strong> [Birth Date, Location]</p>
+                    <p><strong>Died:</strong> [Death Date, Location or 'Living']</p>
+                    <p><strong>State/UT:</strong> [State or Union Territory]</p>
+                    <p><strong>Language:</strong> [Primary Language(s)]</p>
+                    <p><strong>Nationality:</strong> [Nationality]</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section p-6 rounded-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">About [Poet Name]</h2>
+                <p class="text-gray-600 mb-6">
+                    [Brief introduction, e.g., "[Poet Name] was a renowned poet from [State/UT], celebrated for [key contributions, themes, or achievements]. Known for [specific style or impact], they played a significant role in [literary, cultural, or social context]."]
+                </p>
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content text-gray-600">
+                            [Details about the poet’s childhood, family background, education, and early influences. Include key milestones, such as early works or academic achievements. Example for Sarojini Naidu: "Born on February 13, 1879, in Hyderabad to a Bengali Brahmin family, Sarojini Naidu showed prodigious talent, mastering five languages and writing a 1300-line poem at age 12. She studied at King’s College, London, and Girton College, Cambridge, blending Western literary traditions with Indian themes."]
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content text-gray-600">
+                            [Details about the poet’s involvement in politics, activism, or social movements, if applicable. Example for Sarojini Naidu: "A key figure in India’s independence movement, Naidu joined the Indian National Congress in 1904, became its first woman president in 1925, and served as Governor of Uttar Pradesh (1947–1949)."] If the poet had no political career, note their contributions to society or culture instead.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content text-gray-600">
+                            [Overview of the poet’s literary output, including style, themes, and impact. Example: "Naidu’s poetry, written in English, is known for its lyrical quality and vivid imagery, blending Indian themes with British Romanticism. Her works like *The Golden Threshold* and *The Bird of Time* earned her the title ‘Nightingale of India.’"]
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content text-gray-600">
+                            <ul class="list-disc list-inside">
+                                <li>[Poem Title] ([Year]): [Brief description of the poem’s theme or significance.]</li>
+                                <li>[Poem Title] ([Year]): [Brief description.]</li>
+                                <li>[Poem Title] ([Year]): [Brief description.]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content text-gray-600">
+                            <ul class="list-disc list-inside">
+                                <li>[Achievement, e.g., awards, recognitions, or milestones.]</li>
+                                <li>[Achievement.]</li>
+                                <li>[Achievement.]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content text-gray-600">
+                            [Details about the poet’s lasting impact, institutions named after them, or posthumous recognitions. Example: "Naidu’s birth anniversary is celebrated as National Women’s Day in India. The University of Hyderabad’s Sarojini Naidu School of Arts & Communication honors her legacy."]
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content text-gray-600">
+                            <div class="quote">[Quote 1, e.g., “We want deeper sincerity of motive, a greater courage in speech and earnestness in action.” – Sarojini Naidu]</div>
+                            <div class="quote">[Quote 2]</div>
+                            <div class="quote">[Quote 3]</div>
+                        </div>
+                    </div>
+                    <!-- Books and Publications -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('books')">Books and Publications</h3>
+                        <div id="books" class="toggle-content text-gray-600">
+                            <ul class="list-disc list-inside">
+                                <li><a href="[Amazon URL]" target="_blank">[Book Title]</a> ([Year]): [Brief description.]</li>
+                                <li><a href="[Amazon URL]" target="_blank">[Book Title]</a> ([Year]): [Brief description.]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content text-gray-600">
+                            <ul class="list-disc list-inside">
+                                <li>[Year]: [Event, e.g., “1879: Born in Hyderabad.”]</li>
+                                <li>[Year]: [Event.]</li>
+                                <li>[Year]: [Event.]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content text-gray-600">
+                            [Details about the poet’s family, marriage, children, or personal interests. Example: "Naidu married Dr. Govindarajulu Naidu in an inter-caste marriage at age 19. They had five children, including Padmaja Naidu, a freedom fighter and governor."]
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Back to Poets List Button -->
+        <div class="text-center mt-8">
+            <a href="[State Page URL, e.g., telangana.html]" class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Back to [State/UT] Poets</a>
+        </div>
+    </div>
+    <script>
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

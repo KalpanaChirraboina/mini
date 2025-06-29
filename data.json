@@ -1,0 +1,502 @@
+[
+  {
+    "name": "Andhra Pradesh",
+    "type": "state",
+    "url": "andhrapradesh"
+  },
+
+  {
+    "name": "Arunachal Pradesh",
+    "type": "state",
+    "url": "arunachalpradesh"
+  },
+  {
+    "name": "Assam",
+    "type": "state",
+    "url": "assam"
+  },
+  {
+    "name": "Bihar",
+    "type": "state",
+    "url": "bihar"
+  },
+  {
+    "name": "Chhattisgarh",
+    "type": "state",
+    "url": "chhattisgarh"
+  },
+  {
+    "name": "Goa",
+    "type": "state",
+    "url": "goa"
+  },
+  {
+    "name": "Gujarat",
+    "type": "state",
+    "url": "gujarat"
+  },
+  {
+    "name": "Haryana",
+    "type": "state",
+    "url": "haryana"
+  },
+  {
+    "name": "Himachal Pradesh",
+    "type": "state",
+    "url": "himachalpradesh"
+  },
+  {
+    "name": "Jharkhand",
+    "type": "state",
+    "url": "jharkhand"
+  },
+  {
+    "name": "Karnataka",
+    "type": "state",
+    "url": "karnataka"
+  },
+  {
+    "name": "Kerala",
+    "type": "state",
+    "url": "kerala"
+  },
+  {
+    "name": "Madhya Pradesh ",
+    "type": "state",
+    "url": "madhyapradesh"
+  },
+  {
+    "name": "Maharastra",
+    "type": "state",
+    "url": "maharastra"
+  },
+  {
+    "name": "Manipur",
+    "type": "state",
+    "url": "manipur"
+  },
+  {
+    "name": "Meghalaya",
+    "type": "state",
+    "url": "meghalaya"
+  },
+  {
+    "name": "Mizoram",
+    "type": "state",
+    "url": "mizoram"
+  },
+  {
+    "name": "Nagaland",
+    "type": "state",
+    "url": "nagaland"
+  },
+  {
+    "name": "Odisha",
+    "type": "state",
+    "url": "odisha"
+  },
+  {
+    "name": "Punjab",
+    "type": "state",
+    "url": "punjab"
+  },
+  {
+    "name": "Rajasthan",
+    "type": "state",
+    "url": "rajasthan"
+  },
+  {
+    "name": "Sikkim",
+    "type": "state",
+    "url": "sikkim"
+  },
+  {
+    "name": "Tamil Nadu",
+    "type": "state",
+    "url": "tamilnadu"
+  },
+  {
+    "name": "Telangana",
+    "type": "state",
+    "url": "telangana"
+  },
+  {
+    "name": "Tripura",
+    "type": "state",
+    "url": "tripura"
+  },
+  {
+    "name": "Uttar Pradesh",
+    "type": "state",
+    "url": "uttarpradesh"
+  },
+  {
+    "name": "Uttarakhand",
+    "type": "state",
+    "url": "uttarakhand"
+  },
+  {
+    "name": "West Bengal",
+    "type": "state",
+    "url": "westbengal"
+  },
+  {
+    "name": "Jammu and Kashmir",
+    "type": "state",
+    "url": "jammuandkashmir"
+  },
+  {
+    "name": "Delhi",
+    "type": "state",
+    "url": "delhi"
+  },
+ {
+    "name": "Annamacharya",
+    "type": "poet",
+    "url": "AP_Annamacharya"
+  },
+  {
+    "name": "Sri Sri",
+    "type": "poet",
+    "url": "AP_sri_sri"
+  },
+  {
+    "name": "Tenali RamaKrishna",
+    "type": "poet",
+    "url": "AP_tenali_ramakrishna.html"
+  },
+  {
+    "name": "Tikkana",
+    "type": "poet",
+    "url": "AP_Tikkana.html"
+  },
+  
+  {
+    "name": "Jamuna Bini",
+    "type": "poet",
+    "url": "ARP_Jamuna_Bini.html"
+  },
+  {
+    "name": "Luminous Lummer Dai",
+    "type": "poet",
+    "url": "ARP_Luminous_Lummer_Dai.html"
+  },
+  {
+    "name": "Mamang Dai",
+    "type": "poet",
+    "url": "ARP_mamang_dai.html"
+  },
+  {
+    "name": "Hiren Bhattacharyya",
+    "type": "poet",
+    "url": "ASSAM_Hiren_Bhattacharyya.html"
+  },
+  {
+    "name": "Jyoti Prasad Agarwala",
+    "type": "poet",
+    "url": "ASSAM_Jyoti_Prasad_Agarwala.HTML"
+  },
+ {
+    "name": "Arundhati Roy",
+    "type": "poet",
+    "url": "MG_arundhati.html"
+  },
+{
+    "name": "Desmond L Kharmawphlang",
+    "type": "poet",
+    "url": "MG_desmond.html"
+  },
+{
+    "name": "Kynpham Sing Nongkynrih",
+    "type": "poet",
+    "url": "MG_kynpham.html"
+  },
+{
+    "name": "U Soso Tham",
+    "type": "poet",
+    "url": "MG_soso_tham.html"
+  },
+{
+    "name": "Namdeo Dhasal",
+    "type": "poet",
+    "url": "MH_dhasal.html"
+  },
+{
+    "name": "Indira Sant",
+    "type": "poet",
+    "url": "MH_indira.html"
+  },
+{
+    "name": "Sant Tukaram",
+    "type": "poet",
+    "url": "MH_sant.html"
+  },
+{
+    "name": "Vinda Karandikar",
+    "type": "poet",
+    "url": "MH_vinda.html"
+  },
+{
+    "name": "Ningombam Bupenda Meitei",
+    "type": "poet",
+    "url": "MN_bupenda.html"
+  },
+{
+    "name": "Khwairakpam Chaoba Singh",
+    "type": "poet",
+    "url": "MN_chaoba.html"
+  },
+{
+    "name": "Naoriya Phulo",
+    "type": "poet",
+    "url": "MN_phulo.html"
+  },
+{
+    "name": "Robin Ngangom",
+    "type": "poet",
+    "url": "MN_robin.html"
+  },
+{
+    "name": "L. Biakliana",
+    "type": "poet",
+    "url": "MZ_biakliana.html"
+  },
+{
+    "name": "Hrawva Khiangte",
+    "type": "poet",
+    "url": "MZ_hrawva.html"
+  },
+{
+    "name": "Saihnuna",
+    "type": "poet",
+    "url": "MZ_saihnuna.html"
+  },
+{
+    "name": "Lalthangfala Sailo",
+    "type": "poet",
+    "url": "MZ_sailo.html"
+  },
+{
+    "name": "Mmhonlumo Kikon",
+    "type": "poet",
+    "url": "NG_kiko.html"
+  },
+{
+    "name": "Easterine Kire",
+    "type": "poet",
+    "url": "NG_kire.html"
+  },
+{
+    "name": "Rano M. Shaiza",
+    "type": "poet",
+    "url": "NG_shaiza.html"
+  },
+{
+    "name": "Temsüla Ao",
+    "type": "poet",
+    "url": "NG_temsula.html"
+  },
+{
+    "name": "Jayadeva",
+    "type": "poet",
+    "url": "OD_jayadeva.html"
+  },
+{
+    "name": "Mayadhar Mansinha",
+    "type": "poet",
+    "url": "OD_mayadhar.html"
+  },
+{
+    "name": "Gangadhar Meher",
+    "type": "poet",
+    "url": "OD_meher.html"
+  },
+{
+    "name": "Sarala Das",
+    "type": "poet",
+    "url": "OD_saraladas.html"
+  },
+{
+    "name": "Guru Nanak",
+    "type": "poet",
+    "url": "PJ_gurunanak.html"
+  },
+{
+    "name": "Prof. Mohan Singh",
+    "type": "poet",
+    "url": "PJ_mohan.html"
+  },
+{
+    "name": "Shiv Kumar Batalvi",
+    "type": "poet",
+    "url": "PJ_shivkumar.html"
+  },
+{
+    "name": "Surjit Patar",
+    "type": "poet",
+    "url": "PJ_surjit.html"
+  },
+{
+    "name": "Harish Bhadani",
+    "type": "poet",
+    "url": "RJ_harish.html"
+  },
+{
+    "name": "Meerabai",
+    "type": "poet",
+    "url": "RJ_meerabai.html"
+  },
+{
+    "name": "Nand Kishore Acharya",
+    "type": "poet",
+    "url": "RJ_nand.html"
+  },
+{
+    "name": "Kanhaiyalal Sethia",
+    "type": "poet",
+    "url": "RJ_sethia.html"
+  },
+{
+    "name": "Kedar Nath Gurung",
+    "type": "poet",
+    "url": "SK_kedar.html"
+  },
+{
+    "name": "Keepu Tsering Lepcha",
+    "type": "poet",
+    "url": "SK_keepu_tsering.html"
+  },
+{
+    "name": "Venerable S. Mahinda Thero",
+    "type": "poet",
+    "url": "SK_mahinda.html"
+  },
+{
+    "name": "Yishey Doma",
+    "type": "poet",
+    "url": "SK_yishey.html"
+  },
+{
+    "name": "Avvaiyar",
+    "type": "poet",
+    "url": "TN_avvaiyar.html"
+  },
+{
+    "name": "Bharathidasan",
+    "type": "poet",
+    "url": "TN_bharathidasan.html"
+  },
+{
+    "name": "Subramania Bharati",
+    "type": "poet",
+    "url": "TN_subramania.html"
+  },
+{
+    "name": "Thiruvalluvar",
+    "type": "poet",
+    "url": "TN_thiruvalluvar.html"
+  },
+{
+    "name": "Kaloji Narayana Rao",
+    "type": "poet",
+    "url": "TS_kaloji.html"
+  },
+{
+    "name": "Gaddar",
+    "type": "poet",
+    "url": "TS_gaddar.html"
+  },
+{
+    "name": "C. Narayana Reddy",
+    "type": "poet",
+    "url": "TS_NarayanaReddy.html"
+  },
+{
+    "name": "Sarojini Naidu",
+    "type": "poet",
+    "url": "TS_sarojini.html"
+  },
+{
+    "name": "Chandra Kanta Murasingh",
+    "type": "poet",
+    "url": "TR_chandrakanta.html"
+  },
+{
+    "name": "Nanda Kumar Debbarma",
+    "type": "poet",
+    "url": "TR_nandkumar.html"
+  },
+{
+    "name": "Sefali Debbarma",
+    "type": "poet",
+    "url": "TR_sefali.html"
+  },
+{
+    "name": "Shyamlal Debbarma",
+    "type": "poet",
+    "url": "TR_shyamlal.html"
+  },
+{
+    "name": "Josh Malihabadi",
+    "type": "poet",
+    "url": "UP_josh.html"
+  },
+{
+    "name": "Kabir",
+    "type": "poet",
+    "url": "UP_kabir.html"
+  },
+{
+    "name": "Surdas",
+    "type": "poet",
+    "url": "UP_surdas.html"
+  },
+{
+    "name": "Tulsidas",
+    "type": "poet",
+    "url": "UP_tulsidas.html"
+  },
+{
+    "name": "Joy Goswami",
+    "type": "poet",
+    "url": "WB_joy_goswami.html"
+  },
+{
+    "name": "Rabindranath Tagore",
+    "type": "poet",
+    "url": "WB_Rabindranath.html"
+  },
+{
+    "name": "Satyendranath Dutta",
+    "type": "poet",
+    "url": "WB_satyendranath.html"
+  },
+{
+    "name": "Sukumar Ray",
+    "type": "poet",
+    "url": "WB_sukumar.html"
+  },
+{
+    "name": "Hemant Joshi",
+    "type": "poet",
+    "url": "UK_hemanth.html"
+  },
+{
+    "name": "Mahadevi Varma",
+    "type": "poet",
+    "url": "UK_mahadevi.html"
+  },
+{
+    "name": "Manglesh Dabral",
+    "type": "poet",
+    "url": "UK_manglesh.html"
+  },
+{
+    "name": "Sumitranandan Pant",
+    "type": "poet",
+    "url": "UK_sumithranandhan.html"
+  }
+
+ 
+
+]

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarojini Naidu - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Sarojini Naidu, the Nightingale of India, a renowned poet and freedom fighter from Telangana.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Sarojini Naidu</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6">
+                <img src="sarojini.jpg" alt="Sarojini Naidu Photo" class="profile-img w-full mb-6">
+                <h2 class="font-semibold text-gray-800">Sarojini Naidu</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Nightingale of India</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> February 13, 1879, Hyderabad</p>
+                    <p><strong>Died:</strong> March 2, 1949, Lucknow</p>
+                    <p><strong>State:</strong> Telangana</p>
+                    <p><strong>Language:</strong> English</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> King's College, London; Girton College, Cambridge</p>
+                    <p><strong>Occupation:</strong> Poet, Politician, Freedom Fighter</p>
+                    <p><strong>Notable Role:</strong> First Woman Governor of Uttar Pradesh (1947–1949)</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section">
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Sarojini Naidu, known as the Nightingale of India, was a poet, freedom fighter, and feminist whose lyrical verses and passionate activism left an indelible mark on Indian history. Born in Hyderabad, she blended vivid imagery of Indian life with English poetic forms, earning international acclaim. As a key figure in the Indian National Congress and the first woman governor of an Indian state, Naidu’s legacy spans literature, politics, and women’s rights.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <div class="mb-6">
+                    <h3 class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/Golden-Threshold-Sarojini-Naidu/dp/9356085048/ref=sr_1_1?crid=B9CYRGGV9HAG&dib=eyJ2IjoiMSJ9.MxCdNm2Tqqtee2etDd7jinBsCps6hlH9OgmsSH5iwBrz1F-DUELxcO_NZUBjmF4LhyfNCpxf-jN5ukGvcLSnVd23t8jC3yAiOVDdlAqPWhlXSrifLjlr__Pq4ePLkeEJrTSJbrosArutuO81T1ymSVtWkltDEpxAN5R67J2uNv5oLPrKOPs3vd-0BswkB108.dl6roHE3wSooxnPcuhC7X9UOFb4Jpe7undAAhLTcwCM&dib_tag=se&keywords=the+golden+threshold+sarojini+naidu&qid=1750427425&sprefix=The+golden+threshold%2Caps%2C239&sr=8-1" target="_blank" class="text-blue-600 hover:underline">The Golden Threshold</a> (1905): Her debut poetry collection, celebrated for its lyrical depictions of Indian life.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Bird-Songs-Death-Spring-Hardcover/dp/8121282578/ref=sr_1_1?crid=3E64IFJCLLU4K&dib=eyJ2IjoiMSJ9.km2GHlUanDAbQUonEYUClqSISkEC7Svy-zI0qb5hKEN-C1lpzeOIGPI2lm7xGHABFzdYClf46EqOAKiCcHDjUA.5PW5t8_hqRRJ-5lKyRas6KSNyg-iO3ODZ63PWu8DLQ8&dib_tag=se&keywords=the+bird+of+time+sarojini+naidu&qid=1750427526&sprefix=the+bird+of+tim+sarojini+naidu%2Caps%2C265&sr=8-1" target="_blank" class="text-blue-600 hover:underline">The Bird of Time</a> (1912): A collection exploring love, death, and patriotism.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Broken-Wing-Songs-Destiny-1915-1916/dp/1437045839/ref=sr_1_1?crid=110UXOVI4B7CW&dib=eyJ2IjoiMSJ9.bwQoRbejCHLfX7_dv6Dvsv72uG-AkL2Fy7oy7FHlhfw7SsIGILzEPAmkt0XIuENSWiNPkIDYADmi9qPYefhUeRB3USjUYYY4jfwG5BgvhIrKUxpipS50FcKcnokHwrVN633N_L40FzuPj7bYukgOWg.sQJY6vNKKnBU-bYjysm44pA-kZrxLLQQT-8Qw0Pl46M&dib_tag=se&keywords=the+broken+wings+sarojini+naidu&qid=1750427609&sprefix=the+broken+wingssarojini+naidu%2Caps%2C287&sr=8-1" target="_blank" class="text-blue-600 hover:underline">The Broken Wing</a> (1917): Poems reflecting India’s freedom struggle and human emotions.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Sceptred-Flute-Sarojini-Naidu/dp/9365617456/ref=sr_1_1?crid=3V42UQ3XT48NG&dib=eyJ2IjoiMSJ9.pCsBL03ypaYLgT7Hifrrc2s8dV-kN_EFWN4kxfBCJqYNt0k-PdaU1oEgeETYYK6u.AEwxuMgBXhtD08jEkRzdflYXYyagjJWgHmSQlgvSCUc&dib_tag=se&keywords=the+sceptred+flute+sarojini+naidu&qid=1750427693&sprefix=the+sceptred+flute+sarojini+naidu%2Caps%2C362&sr=8-1" target="_blank" class="text-blue-600 hover:underline">The Sceptred Flute</a> (1928): A compilation of her selected poems (available on Archive.org).</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content">
+                            Sarojini Naidu was born on February 13, 1879, in Hyderabad to a Bengali Brahmin family. Her father, Aghorenath Chattopadhyay, was a scientist and principal of Nizam’s College, while her mother, Barada Sundari Devi, was a poetess. The eldest of eight siblings, Sarojini was a child prodigy, mastering Urdu, Telugu, English, Bengali, and Persian. At 12, she wrote a 1300-line poem, <em>The Lady of the Lake</em>, and her Persian play <em>Maher Muneer</em> earned a scholarship from the Nizam of Hyderabad. She topped the University of Madras matriculation exam in 1891 and studied at King’s College, London, and Girton College, Cambridge (1895–1898), where she was influenced by the Aesthetic movement and suffragette cause.
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content">
+                            Inspired by the 1905 Bengal partition, Sarojini Naidu joined the Indian National Congress in 1904. Mentored by Gopal Krishna Gokhale and Mahatma Gandhi, she participated in the Non-Cooperation Movement (1920), Salt March (1930), and Quit India Movement (1942), enduring over 21 months in jail. In 1925, she became the first Indian woman to preside over the Congress in Kanpur. Naidu co-founded the Women’s Indian Association in 1917 and was appointed Governor of the United Provinces (1947–1949), the first woman in this role.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content">
+                            Naidu’s poetry, written in English, is renowned for its lyrical beauty and fusion of Indian themes with British Romanticism. Known as the “Indian Yeats,” she explored patriotism, love, and nature, depicting scenes of bazaars and weavers. Her collections, including <em>The Golden Threshold</em> (1905) and <em>The Bird of Time</em> (1912), earned her the title “Nightingale of India.” Her speeches and essays, like <em>Words of Freedom</em>, reflect her social advocacy.
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>In the Bazaars of Hyderabad</em> (1912): A vivid depiction of Indian markets.</li>
+                                <li><em>The Gift of India</em> (1917): A patriotic tribute to Indian soldiers in World War I.</li>
+                                <li><em>Palanquin Bearers</em> (1905): A rhythmic celebration of palanquin bearers.</li>
+                                <li><em>Indian Weavers</em> (1971, posthumous): A metaphor for life’s stages.</li>
+                                <li><em>Autumn Song</em> (1912): A melancholic reflection on change.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>First Indian woman President of the Indian National Congress (1925).</li>
+                                <li>First woman Governor of an Indian state (Uttar Pradesh, 1947–1949).</li>
+                                <li>Elected Fellow of the Royal Society of Literature (1914).</li>
+                                <li>Received and returned the Kaiser-i-Hind Gold Medal (1908, 1919).</li>
+                                <li>Co-founded the Women’s Indian Association (1917).</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content">
+                            Naidu’s legacy endures through her poetry and advocacy. Her birth anniversary, February 13, is National Women’s Day in India. The Sarojini Naidu School of Arts & Communication at the University of Hyderabad honors her. Asteroid 5647 Sarojininaidu (1990) and a 2014 Google Doodle commemorate her contributions.
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content">
+                            <div class="quote">“We want deeper sincerity of motive, a greater courage in speech and earnestness in action.”</div>
+                            <div class="quote">“A country’s greatness lies in its undying ideals of love and sacrifice.”</div>
+                            <div class="quote">“When there is oppression, the only self-respecting thing is to rise and say this shall cease today.”</div>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1879: Born in Hyderabad, Telangana.</li>
+                                <li>1895–1898: Studied at King’s College, London, and Girton College, Cambridge.</li>
+                                <li>1905: Published <em>The Golden Threshold</em>.</li>
+                                <li>1912: Released <em>The Bird of Time</em>.</li>
+                                <li>1917: Co-founded the Women’s Indian Association.</li>
+                                <li>1925: First Indian woman President of the Indian National Congress.</li>
+                                <li>1930: Participated in the Salt March.</li>
+                                <li>1942: Arrested during the Quit India Movement.</li>
+                                <li>1947: Appointed Governor of the United Provinces.</li>
+                                <li>1949: Passed away in Lucknow.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content">
+                            Sarojini Naidu married Dr. Govindarajulu Naidu in 1898 in an inter-caste marriage. They had five children: Jayasurya, Padmaja, Randheer, Nilawar, and Leelamani. Her daughter Padmaja became a freedom fighter and Governor of West Bengal. Naidu balanced her public roles with a warm family life.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="telangana.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('.content-section').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

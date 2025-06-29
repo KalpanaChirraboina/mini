@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poets of Telangana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .card p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Poets of Telangana</h1>
+    <div class="grid-container">
+        <a href="TS_kaloji.html" class="card">
+            <img src="kaloji.jpg" alt="Kaloji Narayana Rao">
+            <p>Kaloji Narayana Rao</p>
+        </a>
+        <a href="TS_gaddar.html" class="card">
+            <img src="gaddar1.jpg" alt="Gaddar">
+            <p>Gaddar</p>
+        </a>
+        <a href="TS_NarayanaReddy.html" class="card">
+            <img src="narayana.jpg" alt="C. Narayana Reddy">
+            <p>C. Narayana Reddy</p>
+        </a>
+        <a href="TS_sarojini.html" class="card">
+            <img src="sarojini.jpg" alt="Sarojini Naidu">
+            <p>Sarojini Naidu</p>
+        </a>
+    </div>
+</body>
+</html>

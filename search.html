@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search | Indian Poets</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f4f8;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    nav {
+      background: #e0f7fa;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #00796b;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .container {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #search-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    #searchInput {
+      width: 100%;
+      padding: 15px 20px;
+      font-size: 1.2rem;
+      border-radius: 40px;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      outline: none;
+    }
+
+    #searchInput:focus {
+      border-color: #26a69a;
+    }
+
+    #suggestions {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    #suggestions div {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    #suggestions div:hover {
+      background-color: #e0f7fa;
+    }
+
+    .credit {
+      padding: 1rem;
+      text-align: center;
+      color: gray;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="home_page.html">Home</a>
+    <a href="search.html">Search</a>
+    <a href="map.html">Map</a>
+    <a href="support.html">Support</a>
+    <a href="chatbot.html">Chatbot</a>
+  </nav>
+
+  <div class="container">
+    <h2>Search for a State or Poet</h2>
+
+    <div id="search-container">
+      <input type="text" id="searchInput" placeholder="Type something..." autocomplete="off">
+      <div id="suggestions"></div>
+    </div>
+  </div>
+
+  <div class="credit">© 2025 Poets of India</div>
+
+  <script>
+    const input = document.getElementById("searchInput");
+    const suggestionsBox = document.getElementById("suggestions");
+
+    input.addEventListener("input", () => {
+      const q = input.value.trim();
+      if (!q) {
+        suggestionsBox.innerHTML = "";
+        return;
+      }
+
+      fetch(`/search-data?q=${encodeURIComponent(q)}`)
+        .then(res => res.json())
+        .then(data => {
+          suggestionsBox.innerHTML = "";
+
+          if (!data.length) {
+            suggestionsBox.innerHTML = "<div>No results found</div>";
+            return;
+          }
+
+          data.forEach(item => {
+            const div = document.createElement("div");
+            div.textContent = `${item.name} (${item.type})`;
+            div.addEventListener("click", () => {
+              const url = item.url.endsWith(".html") ? item.url : `${item.url}.html`;
+              window.location.href = url;
+            });
+            suggestionsBox.appendChild(div);
+          });
+        });
+    });
+
+    input.addEventListener("keypress", e => {
+      if (e.key === "Enter") {
+        const firstSuggestion = suggestionsBox.querySelector("div");
+        if (firstSuggestion) firstSuggestion.click();
+      }
+    });
+  </script>
+</body>
+</html>

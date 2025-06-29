@@ -1,0 +1,59 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.navbar {
+  background-color: black;
+  height: 60px;
+  border-radius: 20px;
+  color: white;
+}
+a {
+  padding-left: 50px;
+  padding-right: A50px;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+  padding-top: 10px;
+}
+.container {
+           
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-top: 50px;
+}
+body {
+  background-color: white;
+}
+.imap {
+  width: 33%;
+  margin: auto;
+
+  padding-top: 70px;
+}
+.imap path {
+ fill:skyblue;
+  stroke: white;
+  stroke-width: 1px;
+  transition: fill 0.3s;
+
+}
+.imap path:hover{
+  fill:red;
+  transition: fill 0.3s;
+}
+#OK
+{
+    font-size: 25px;
+    background-color: skyblue;
+}
+
+        
+#go{
+  color: lightblue;
+}

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surdas - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Surdas, the blind poet-saint from Uttar Pradesh, renowned for his devotional poetry in Braj Bhasha dedicated to Lord Krishna.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Surdas</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <aside class="w-full md:w-1/3 sidebar p-6" aria-labelledby="profile-heading">
+                <img src="surdas.jpg" alt="Portrait of Surdas" class="profile-img w-full mb-6">
+                <h2 id="profile-heading" class="font-semibold text-gray-800">Surdas</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Blind Bard of Krishna</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> Circa 1478–1483, Sihi or Runakta, Uttar Pradesh</p>
+                    <p><strong>Died:</strong> Circa 1561–1584, Braj, Uttar Pradesh</p>
+                    <p><strong>State:</strong> Uttar Pradesh</p>
+                    <p><strong>Language:</strong> Braj Bhasha</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> Informal, mentored by Vallabhacharya</p>
+                    <p><strong>Occupation:</strong> Poet, Saint, Musician</p>
+                    <p><strong>Notable Role:</strong> Devotee of Lord Krishna</p>
+                </div>
+            </aside>
+            <!-- Main Content: Intro and Collapsible Sections -->
+            <main class="w-full md:w-2/3 content-section" aria-labelledby="content-heading">
+                <h2 id="content-heading" class="sr-only">Surdas Profile Details</h2>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Surdas, the blind poet-saint from Uttar Pradesh, is one of India’s most revered Bhakti poets, celebrated for his devotional poetry in Braj Bhasha dedicated to Lord Krishna. A key figure in the Pushti Marg tradition, his verses, filled with vivid imagery and divine love, capture Krishna’s childhood leelas. His magnum opus, <em>Sur Sagar</em>, remains a cornerstone of Hindi literature and Vaishnava devotion, inspiring generations with its spiritual depth.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <section class="mb-6" aria-labelledby="books-heading">
+                    <h3 id="books-heading" class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/Sur-sagar-SURDAS-JI/dp/B09C21Z3LY" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">Sur Sagar</a> (Compiled post-16th century): An epic collection of poems on Krishna’s life.</li>
+                            <li class="book-link"><a href="https://www.booksforyou.co.in/Books/Sur-Padavali" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">Sur Padavali</a> (Compiled later): A selection of his devotional songs.</li>
+                            <li class="book-link"><a href="https://kumarclassicbookpoint.blogspot.com/2019/06/sur-saravali-1957-rare-out-of-print.html" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">Sur Saravali</a> (Compiled post-16th century): A collection of his lyrical poems.</li>
+                            <li class="book-link"><a href="https://archive.org/details/in.ernet.dli.2015.251509" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">Sahitya Ratna</a> (Compiled later): Anthology of select verses.</li>
+                        </ul>
+                    </div>
+                </section>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="early-life-heading" onclick="toggleContent('early-life')" role="button" aria-expanded="false" aria-controls="early-life">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content" aria-labelledby="early-life-heading">
+                            Surdas was born around 1478–1483 in Sihi or Runakta, near Agra, Uttar Pradesh, likely blind from birth or early childhood. Little is known about his family, but legends describe him as a gifted poet from a young age. He became a disciple of Vallabhacharya, founder of the Pushti Marg sect, whose teachings shaped his devotional poetry centered on Krishna worship.
+                        </div>
+                    </section>
+                    <!-- Political Career -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="political-career-heading" onclick="toggleContent('political-career')" role="button" aria-expanded="false" aria-controls="political-career">Political Career</h3>
+                        <div id="political-career" class="toggle-content" aria-labelledby="political-career-heading">
+                            Surdas did not engage in politics, focusing instead on spiritual and devotional life. His poetry, however, had a profound social impact, promoting equality and devotion over caste and ritualism. As a Bhakti saint, he influenced the cultural and religious landscape of medieval India, fostering unity through Krishna devotion in the Braj region.
+                        </div>
+                    </section>
+                    <!-- Literary Contributions -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="literary-contributions-heading" onclick="toggleContent('literary-contributions')" role="button" aria-expanded="false" aria-controls="literary-contributions">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content" aria-labelledby="literary-contributions-heading">
+                            Surdas’s poetry, written in Braj Bhasha, is renowned for its vivid portrayal of Krishna’s divine play and emotional depth. His magnum opus, <em>Sur Sagar</em>, contains thousands of poems describing Krishna’s childhood and leelas. Other works like <em>Sur Saravali</em> and <em>Sur Padavali</em> enriched Hindi literature, blending devotion with poetic artistry, influencing Bhakti literature and music.
+                        </div>
+                    </section>
+                    <!-- Selected Poems -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="selected-poems-heading" onclick="toggleContent('selected-poems')" role="button" aria-expanded="false" aria-controls="selected-poems">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content" aria-labelledby="selected-poems-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>Maiya Mori Main Nahin Makhan Khayo</em> (16th century): Krishna’s playful denial of stealing butter.</li>
+                                <li><em>Hari Tum Haro Jan Ki Peer</em> (16th century): A plea for divine compassion.</li>
+                                <li><em>Nainan Ke Didar</em> (16th century): A poem on beholding Krishna’s beauty.</li>
+                                <li><em>Bal Krishna Leela</em> (16th century): Describing Krishna’s childhood antics.</li>
+                                <li><em>Shyam Sundar Ke Darshan</em> (16th century): A devotional song on Krishna’s form.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Major Achievements -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="achievements-heading" onclick="toggleContent('achievements')" role="button" aria-expanded="false" aria-controls="achievements">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content" aria-labelledby="achievements-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Authored <em>Sur Sagar</em>, a monumental work in Bhakti literature.</li>
+                                <li>Influenced the Pushti Marg sect and Vaishnava devotion.</li>
+                                <li>Enriched Braj Bhasha as a literary language.</li>
+                                <li>Inspired classical music traditions like Haveli Sangeet.</li>
+                                <li>Recognized as one of the Ashtachhap poets of Vallabhacharya’s tradition.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Legacy and Honors -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="legacy-heading" onclick="toggleContent('legacy')" role="button" aria-expanded="false" aria-controls="legacy">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content" aria-labelledby="legacy-heading">
+                            Surdas’s legacy endures through his devotional poetry, which remains central to Vaishnava worship and Hindi literature. His verses are sung in temples and studied in academic curricula. Temples in Braj, like the Surdas Temple in Mathura, honor him. His influence extends to Indian classical music and art, with festivals celebrating his contributions to Krishna devotion.
+                        </div>
+                    </section>
+                    <!-- Famous Quotes -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="quotes-heading" onclick="toggleContent('quotes')" role="button" aria-expanded="false" aria-controls="quotes">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content" aria-labelledby="quotes-heading">
+                            <div class="quote">“My heart sees Krishna, though my eyes do not.”</div>
+                            <div class="quote">“Devotion is the true sight of the soul.”</div>
+                            <div class="quote">“In Krishna’s love, all boundaries dissolve.”</div>
+                        </div>
+                    </section>
+                    <!-- Timeline of Important Events -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="timeline-heading" onclick="toggleContent('timeline')" role="button" aria-expanded="false" aria-controls="timeline">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content" aria-labelledby="timeline-heading">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Circa 1478–1483: Born in Sihi or Runakta, Uttar Pradesh.</li>
+                                <li>Early 16th century: Became disciple of Vallabhacharya.</li>
+                                <li>16th century: Composed <em>Sur Sagar</em> and other devotional works.</li>
+                                <li>16th century: Associated with the Ashtachhap poets in Braj.</li>
+                                <li>Circa 1561–1584: Passed away in Braj, Uttar Pradesh.</li>
+                                <li>Post-16th century: Works compiled in <em>Sur Sagar</em> and <em>Sur Saravali</em>.</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <!-- Personal Life and Children -->
+                    <section>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" id="personal-heading" onclick="toggleContent('personal')" role="button" aria-expanded="false" aria-controls="personal">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content" aria-labelledby="personal-heading">
+                            Little is documented about Surdas’s personal life. Traditionally believed to be celibate, he devoted his life to Krishna worship and poetry as a follower of Vallabhacharya. He lived simply in the Braj region, possibly in Mathura or Vrindavan, where he mingled his verses with his devotion, embodying the humility reflected in his poetry.
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <li>Read the biography aloud using text-to-speech.</li>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="uttarpradesh.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const heading = document.querySelector(`[aria-controls="${sectionId}"]`);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+                document.querySelector(`[aria-controls="${el.id}"]`).setAttribute('aria-expanded', 'false');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+                heading.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('main').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

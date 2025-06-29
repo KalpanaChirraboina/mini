@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabindranath Tagore - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Rabindranath Tagore, the Nobel laureate poet from West Bengal, renowned for his profound Bengali poetry, songs, and contributions to Indian literature and culture.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Rabindranath Tagore</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6">
+                <img src="tagore.jpg" alt="Rabindranath Tagore Photo" class="profile-img w-full mb-6">
+                <h2 class="font-semibold text-gray-800">Rabindranath Tagore</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Bard of Bengal</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> May 7, 1861, Kolkata, West Bengal</p>
+                    <p><strong>Died:</strong> August 7, 1941, Kolkata, West Bengal</p>
+                    <p><strong>State:</strong> West Bengal</p>
+                    <p><strong>Language:</strong> Bengali, English</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> Home-schooled, briefly attended University College London</p>
+                    <p><strong>Occupation:</strong> Poet, Novelist, Composer, Philosopher</p>
+                    <p><strong>Notable Role:</strong> Nobel Laureate in Literature</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section">
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Rabindranath Tagore, fondly called Gurudev, was a towering figure in Bengali and world literature, becoming the first non-European to win the Nobel Prize in Literature in 1913 for <em>Gitanjali</em>. Born in Kolkata, his poetry, songs, novels, and essays blend spirituality, humanism, and nature. Tagore’s creation of <em>Rabindra Sangeet</em> and his establishment of Visva-Bharati University have left an enduring legacy in Indian culture and global thought.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <div class="mb-6">
+                    <h3 class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.amazon.in/Gitanjali-Rabindranath-Tagore/dp/8171676766" target="_blank" class="text-blue-600 hover:underline">Gitanjali</a> (1910): A collection of spiritual poems, Nobel Prize winner.</li>
+                            <li class="book-link"><a href="https://www.thehindu.com/books/ghare-baire-by-rabindranath-tagore-a-review/article23685698.ece" target="_blank" class="text-blue-600 hover:underline">Ghare-Baire</a> (1916): A novel exploring nationalism and love.</li>
+                            <li class="book-link"><a href="https://www.goodreads.com/book/show/115030.Chokher_Bali" target="_blank" class="text-blue-600 hover:underline">Chokher Bali</a> (1903): A novel on human relationships.</li>
+                            <li class="book-link"><a href="https://www.amazon.in/Songs-Kabir-ebook/dp/B0082YVEBK" target="_blank" class="text-blue-600 hover:underline">Kabir</a> (1915): Translated poems of Kabir (available on Archive.org).</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content">
+                            Rabindranath Tagore was born on May 7, 1861, in Kolkata to a prominent Brahmo family. The youngest of thirteen children, he was home-schooled in literature, music, and arts. He briefly studied law at University College London but returned to India without a degree, immersing himself in writing and managing family estates, which inspired his deep connection to rural Bengal.
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content">
+                            Tagore was not a politician but played a significant role in India’s freedom movement through his writings and ideas. He supported Swadeshi but renounced his knighthood in 1919 to protest the Jallianwala Bagh massacre. His works, like <em>Ghare-Baire</em>, critiqued nationalism and colonialism, advocating for universal humanism and cultural unity.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content">
+                            Tagore’s vast oeuvre includes poetry, novels, short stories, essays, and plays, primarily in Bengali, with many translated into English. <em>Gitanjali</em> (1910) brought him global fame, while novels like <em>Chokher Bali</em> and <em>Gora</em> explored social issues. His 2,000+ songs, <em>Rabindra Sangeet</em>, are integral to Bengali culture, and he composed India’s and Bangladesh’s national anthems.
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>Where the Mind is Without Fear</em> (1910): A vision for freedom from <em>Gitanjali</em>.</li>
+                                <li><em>Ekla Cholo Re</em> (1905): A song of solitary resolve.</li>
+                                <li><em>Birpurush</em> (1890s): A poem on courage and sacrifice.</li>
+                                <li><em>Amar Shonar Bangla</em> (1905): Bangladesh’s national anthem.</li>
+                                <li><em>Jana Gana Mana</em> (1911): India’s national anthem.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Won the Nobel Prize in Literature for <em>Gitanjali</em> (1913).</li>
+                                <li>Founded Visva-Bharati University in Santiniketan (1921).</li>
+                                <li>Composed India’s and Bangladesh’s national anthems.</li>
+                                <li>Knighted by the British (1915), later renounced in protest (1919).</li>
+                                <li>Influenced global literature through translations and lectures.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content">
+                            Tagore’s legacy endures through his literature, music, and educational philosophy. Visva-Bharati remains a cultural hub, and his works are celebrated globally. Rabindra Jayanti marks his birth anniversary, and institutions like Rabindra Bharati University honor him. His songs and writings continue to inspire art, literature, and social thought across the world.
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content">
+                            <div class="quote">“Let my thoughts come to you, when I am gone, like the afterglow of sunset.”</div>
+                            <div class="quote">“The highest education is that which does not merely give us information but makes our life in harmony with all existence.”</div>
+                            <div class="quote">“Love does not claim possession, but gives freedom.”</div>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1861: Born in Kolkata, West Bengal.</li>
+                                <li>1903: Published <em>Chokher Bali</em>.</li>
+                                <li>1910: Published <em>Gitanjali</em>.</li>
+                                <li>1913: Won Nobel Prize in Literature.</li>
+                                <li>1915: Knighted by the British.</li>
+                                <li>1916: Published <em>Ghare-Baire</em>.</li>
+                                <li>1919: Renounced knighthood.</li>
+                                <li>1921: Founded Visva-Bharati University.</li>
+                                <li>1941: Passed away in Kolkata.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content">
+                            Tagore married Mrinalini Devi in 1883 and had five children: Rathindranath, Madhurilata, Renuka, Meera, and Shamindranath. Widowed in 1902, he raised his children while managing family estates and writing. His travels across Europe, Asia, and America enriched his worldview, and he lived a life dedicated to creativity, education, and social reform.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="westbengal.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('.content-section').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>

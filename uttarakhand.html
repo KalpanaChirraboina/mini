@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poets of Uttarakhand</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 90%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .card p {
+            margin: 10px 0 0;
+            font-size: 1.1em;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Poets of Uttarakhand</h1>
+    <div class="grid-container">
+        <a href="UK_hemanth.html" class="card">
+            <img src="hemanth.jpg" alt="Hemant Joshi">
+            <p>Hemant Joshi</p>
+        </a>
+        <a href="UK_mahadevi.html" class="card">
+            <img src="mahadevi.jpg" alt="Mahadevi Varma">
+            <p>Mahadevi Varma</p>
+        </a>
+        <a href="UK_manglesh.html" class="card">
+            <img src="manglesh.jpg" alt="Manglesh Dabral">
+            <p>Manglesh Dabral</p>
+        </a>
+        <a href="UK_sumithranandhan.html" class="card">
+            <img src="sumitranandhan.jpg" alt="Sumitranandan Pant">
+            <p>Sumitranandan Pant</p>
+        </a>
+    </div>
+</body>
+</html>

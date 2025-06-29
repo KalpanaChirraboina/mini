@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satyendranath Dutta - Poet Profile</title>
+    <meta name="description" content="Discover the life and works of Satyendranath Dutta, a prominent Bengali poet from West Bengal, renowned for his rhythmic and innovative poetry in the early 20th century.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+            margin: 0;
+        }
+        .container {
+            position: relative;
+        }
+        .sidebar {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .sidebar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        .content-section {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+        }
+        .profile-img {
+            max-height: 300px;
+            object-fit: contain;
+            border: 6px solid #e5e7eb;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            width: 100%;
+        }
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        .toggle-content {
+            display: none;
+            margin-top: 0.5rem;
+            padding: 1.25rem;
+            background: #f9fafb;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        .toggle-content.active {
+            display: block;
+        }
+        .toggle-heading {
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            padding: 0.75rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem !important;
+        }
+        .toggle-heading:hover {
+            color: #1d4ed8;
+            transform: translateX(5px);
+            background: #eff6ff;
+        }
+        .toggle-heading::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url('hand.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+        .quote {
+            font-style: italic;
+            border-left: 4px solid #1d4ed8;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            color: #4b5563;
+            background: #f0f7ff;
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .books-header {
+            color: #0f766e;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .books-header::before {
+            content: '📚';
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+        }
+        .book-link {
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .book-link:hover {
+            color: #1d4ed8;
+            transform: translateX(3px);
+        }
+        .book-link::before {
+            content: '🔗';
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .section-divider {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #d1d5db, transparent);
+            margin: 2rem 0;
+        }
+        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
+            background: linear-gradient(to right, #1d4ed8, #3b82f6);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
+            background: linear-gradient(to right, #1e40af, #2563eb);
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .main-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .main-header-title::after {
+            content: none;
+        }
+        .section-header-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+        .section-header-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 3px;
+            background: #000000;
+            border-radius: 0;
+            transform: translateX(calc(-50vw + 50%));
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sidebar h2 {
+            font-size: 2.25rem;
+        }
+        .sidebar .subtitle {
+            font-size: 1.125rem;
+        }
+        .sidebar-details p {
+            font-size: 1.25rem;
+        }
+        .button-group button:disabled {
+            background: #d1d5db;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8 animate-fadeIn">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Satyendranath Dutta</h1>
+        </header>
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Left Sidebar: Photo and Basic Details -->
+            <div class="w-full md:w-1/3 sidebar p-6">
+                <img src="satyendranath.jpeg" alt="Satyendranath Dutta Photo" class="profile-img w-full mb-6">
+                <h2 class="font-semibold text-gray-800">Satyendranath Dutta</h2>
+                <p class="text-gray-600 mb-4 subtitle">The Rhyme Wizard of Bengal</p>
+                <div class="space-y-2 text-gray-700 sidebar-details">
+                    <p><strong>Born:</strong> February 11, 1882, Kolkata, West Bengal</p>
+                    <p><strong>Died:</strong> June 25, 1922, Kolkata, West Bengal</p>
+                    <p><strong>State:</strong> West Bengal</p>
+                    <p><strong>Language:</strong> Bengali</p>
+                    <p><strong>Nationality:</strong> Indian</p>
+                    <p><strong>Education:</strong> General Assembly’s Institution (now Scottish Church College)</p>
+                    <p><strong>Occupation:</strong> Poet, Translator, Lawyer</p>
+                    <p><strong>Notable Role:</strong> Pioneer of Bengali Sonnets</p>
+                </div>
+            </div>
+            <!-- Right Content: Intro and Collapsible Sections -->
+            <div class="w-full md:w-2/3 content-section">
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Satyendranath Dutta was a prolific Bengali poet from West Bengal, celebrated for his mastery of rhyme and rhythm in the early 20th century. Known as the 'Rhyme Wizard,' he introduced innovative metrical forms and sonnets to Bengali poetry, blending traditional and Western influences. His patriotic and lyrical works, along with translations of foreign poets, enriched Bengali literature, leaving a lasting impact despite his short life.
+                </p>
+                <hr class="section-divider">
+                <!-- Books and Publications (Separate Header) -->
+                <div class="mb-6">
+                    <h3 class="books-header">Books and Publications</h3>
+                    <div class="text-gray-600">
+                        <ul class="list-none space-y-3">
+                            <li class="book-link"><a href="https://www.jstor.org/action/doBasicSearch?Query=Tirtha+Salil&so=rel" target="_blank" class="text-blue-600 hover:underline">Tirtha Salil</a> (1906): His debut poetry collection, showcasing rhythmic brilliance.</li>
+                            <li class="book-link"><a href="https://archive.org/details/dli.bengal.10689.1807" target="_blank" class="text-blue-600 hover:underline">Kuhu O Keka</a> (1908): A collection of lyrical and nature-inspired poems.</li>
+                            <li class="book-link"><a href="https://archive.org/details/dli.bengal.10689.18348" target="_blank" class="text-blue-600 hover:underline">Benu O Bina</a> (1911): Poems blending patriotism and aesthetics (available on Archive.org).</li>
+                            <li class="book-link"><a href="https://omnilogos.com/twentieth-century-bengali-literature/#google_vignette" target="_blank" class="text-blue-600 hover:underline">Phuler Phasal</a> (1919): A collection of sonnets and lyrical poems.</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="section-divider">
+                <div class="space-y-4">
+                    <!-- Early Life and Education -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
+                        <div id="early-life" class="toggle-content">
+                            Satyendranath Dutta was born on February 11, 1882, in Kolkata, West Bengal, into a cultured Bengali family. His grandfather, Akshay Kumar Datta, was a noted writer. He studied at General Assembly’s Institution (now Scottish Church College) and later pursued law, but his passion for poetry defined his life. Influenced by Rabindranath Tagore and Western poets, he began writing early, mastering complex rhythms.
+                        </div>
+                    </div>
+                    <!-- Political Career -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+                        <div id="political-career" class="toggle-content">
+                            Satyendranath Dutta did not actively participate in politics but expressed patriotic fervor through his poetry. His works, like those in <em>Benu O Bina</em>, reflected the Swadeshi movement’s spirit, advocating cultural pride and resistance to British rule. His translations of revolutionary poets also subtly supported India’s freedom struggle, influencing Bengal’s intellectual climate.
+                        </div>
+                    </div>
+                    <!-- Literary Contributions -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+                        <div id="literary-contributions" class="toggle-content">
+                            Satyendranath Dutta’s poetry is renowned for its rhythmic innovation and versatility, introducing sonnets and complex metrical forms to Bengali literature. Collections like <em>Tirtha Salil</em> (1906) and <em>Phuler Phasal</em> (1919) blend nature, patriotism, and love. He translated poets like Victor Hugo and Hafiz, enriching Bengali literature with global influences and earning praise from Rabindranath Tagore.
+                        </div>
+                    </div>
+                    <!-- Selected Poems -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+                        <div id="selected-poems" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><em>Banglar Mati</em> (1908): A patriotic poem from <em>Kuhu O Keka</em>.</li>
+                                <li><em>Phuler Phasal</em> (1919): A sonnet celebrating nature’s bounty.</li>
+                                <li><em>Swapner Katha</em> (1911): A lyrical poem from <em>Benu O Bina</em>.</li>
+                                <li><em>Jatiya Sangeet</em> (1906): A nationalist song from <em>Tirtha Salil</em>.</li>
+                                <li><em>Megher Gaan</em> (1910s): A poem on nature’s mysticism.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Major Achievements -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
+                        <div id="achievements" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>Pioneered the sonnet form in Bengali poetry.</li>
+                                <li>Introduced innovative metrical patterns, earning the title 'Rhyme Wizard.'</li>
+                                <li>Translated works of Victor Hugo, Hafiz, and other global poets.</li>
+                                <li>Contributed to the Swadeshi movement through patriotic poetry.</li>
+                                <li>Received praise from Rabindranath Tagore for his poetic mastery.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Legacy and Honors -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
+                        <div id="legacy" class="toggle-content">
+                            Satyendranath Dutta’s legacy endures through his rhythmic innovations and patriotic verses, which remain part of Bengali literary studies. His sonnets and translations expanded the scope of Bengali poetry. Literary societies in Kolkata honor his contributions, and his works are celebrated in cultural events, preserving his influence in Bengal’s literary heritage.
+                        </div>
+                    </div>
+                    <!-- Famous Quotes -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+                        <div id="quotes" class="toggle-content">
+                            <div class="quote">“Rhythm is the heartbeat of poetry.”</div>
+                            <div class="quote">“In every rhyme, I weave the soul of Bengal.”</div>
+                            <div class="quote">“Poetry is the bridge between the heart and the cosmos.”</div>
+                        </div>
+                    </div>
+                    <!-- Timeline of Important Events -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
+                        <div id="timeline" class="toggle-content">
+                            <ul class="list-disc list-inside space-y-2">
+                                <li>1882: Born in Kolkata, West Bengal.</li>
+                                <li>1906: Published <em>Tirtha Salil</em>.</li>
+                                <li>1908: Released <em>Kuhu O Keka</em>.</li>
+                                <li>1911: Published <em>Benu O Bina</em>.</li>
+                                <li>1919: Published <em>Phuler Phasal</em>.</li>
+                                <li>1922: Passed away in Kolkata.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Personal Life and Children -->
+                    <div>
+                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life and Children</h3>
+                        <div id="personal" class="toggle-content">
+                            Satyendranath Dutta married but had no children, dedicating much of his life to poetry and law practice in Kolkata. His personal life was marked by his literary pursuits and interactions with Bengal’s cultural elite, including Rabindranath Tagore. Despite his early death at 40, his prolific output left a lasting mark on Bengali literature.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Button Section -->
+        <div class="text-center mt-8 button-group">
+            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
+            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
+            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
+            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
+            <a href="westbengal.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
+        </div>
+    </div>
+    <script>
+        // Toggle content visibility
+        function toggleContent(sectionId) {
+            const content = document.getElementById(sectionId);
+            const isActive = content.classList.contains('active');
+            document.querySelectorAll('.toggle-content').forEach((el) => {
+                el.classList.remove('active');
+            });
+            if (!isActive) {
+                content.classList.add('active');
+            }
+        }
+
+        // Text-to-speech functionality
+        let utterance = null;
+        let isPaused = false;
+
+        function readAloud() {
+            if (utterance && !isPaused) {
+                window.speechSynthesis.cancel();
+            }
+            const content = document.querySelector('.content-section').innerText;
+            utterance = new SpeechSynthesisUtterance(content);
+            utterance.lang = 'en-US';
+            utterance.rate = 1;
+            utterance.onend = () => {
+                resetButtons();
+            };
+            window.speechSynthesis.speak(utterance);
+            updateButtonStates(true);
+        }
+
+        function stopReading() {
+            if (utterance) {
+                window.speechSynthesis.pause();
+                isPaused = true;
+                updateButtonStates(true, true);
+            }
+        }
+
+        function resumeReading() {
+            if (utterance && isPaused) {
+                window.speechSynthesis.resume();
+                isPaused = false;
+                updateButtonStates(true);
+            }
+        }
+
+        function restartReading() {
+            window.speechSynthesis.cancel();
+            isPaused = false;
+            readAloud();
+        }
+
+        function updateButtonStates(isReading, isPaused = false) {
+            const readButton = document.querySelector('.read-aloud-button');
+            const stopButton = document.querySelector('.stop-button');
+            const resumeButton = document.querySelector('.resume-button');
+            const restartButton = document.querySelector('.restart-button');
+            readButton.disabled = isReading && !isPaused;
+            stopButton.disabled = !isReading || isPaused;
+            resumeButton.disabled = !isPaused;
+            restartButton.disabled = !isReading;
+        }
+
+        function resetButtons() {
+            isPaused = false;
+            utterance = null;
+            updateButtonStates(false);
+        }
+
+        // Stop speech on page unload or refresh
+        window.addEventListener('beforeunload', () => {
+            window.speechSynthesis.cancel();
+            resetButtons();
+        });
+    </script>
+</body>
+</html>
