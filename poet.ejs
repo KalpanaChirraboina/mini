@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= poet.name_english %> - Profile</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: Georgia, serif; background: linear-gradient(to bottom, #f3f4f6, #d1d5db); }
+    .sidebar { background: white; border-radius: 12px; padding: 2rem; }
+    .profile-img { max-height: 300px; border: 4px solid #ccc; border-radius: 10px; width: 100%; object-fit: contain; }
+    .content-section { background: white; border-radius: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.1); padding: 2rem; }
+    .toggle-content { display: none; margin-top: 0.5rem; padding: 1rem; background: #f9fafb; border-left: 4px solid #10b981; border-radius: 6px; }
+    .toggle-content.active { display: block; }
+    .toggle-heading { cursor: pointer; display: flex; align-items: center; font-size: 1.25rem; margin: 0.5rem 0; }
+    .toggle-heading:hover { color: #1d4ed8; }
+    .toggle-heading::before { content: ''; display: inline-block; width: 20px; height: 20px; background-image: url('/hand.jpg'); background-size: cover; margin-right: 10px; }
+    .button-group { text-align: center; margin: 2rem auto; max-width: 800px; }
+    .button-group button { background: #2563eb; color: white; padding: 0.5rem 1rem; margin: 0.25rem; border-radius: 6px; font-weight: bold; }
+    .button-group button:hover { background: #1d4ed8; }
+    .hidden { display: none; }
+    #booksList a {
+      color: #2563eb; /* Blue color for book titles */
+      text-decoration: underline;
+      transition: color 0.2s ease;
+    }
+    #booksList a:hover {
+      color: #1d4ed8; /* Darker blue on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container mx-auto p-6">
+    <header class="text-center mb-6">
+      <h1 class="text-4xl font-bold mb-2" id="poetName"><%= poet.name_english %></h1>
+      <p class="text-xl text-gray-700" id="poetRole"><%= poet.notableRole_english %></p>
+    </header>
+
+    <div class="flex flex-col md:flex-row gap-6">
+      <aside class="w-full md:w-1/3 sidebar">
+        <img src="/<%= poet.image %>" alt="Portrait of <%= poet.name_english %>" class="profile-img mb-4"/>
+        <div class="text-gray-700 space-y-2">
+          <p><strong id="bornLabel"><%= poet.bornLabel_english %>:</strong> <span id="born"><%= poet.born_english %></span></p>
+          <p><strong id="diedLabel"><%= poet.diedLabel_english %>:</strong> <span id="died"><%= poet.died_english %></span></p>
+          <p><strong id="stateLabel"><%= poet.stateLabel_english %>:</strong> <span id="state"><%= poet.state_english %></span></p>
+          <p><strong id="languageLabel"><%= poet.languageLabel_english %>:</strong> <span id="language"><%= poet.language_english %></span></p>
+          <p><strong id="nationalityLabel"><%= poet.nationalityLabel_english %>:</strong> <span id="nationality"><%= poet.nationality_english %></span></p>
+          <p><strong id="educationLabel"><%= poet.educationLabel_english %>:</strong> <span id="education"><%= poet.education_english %></span></p>
+          <p><strong id="occupationLabel"><%= poet.occupationLabel_english %>:</strong> <span id="occupation"><%= poet.occupation_english %></span></p>
+        </div>
+      </aside>
+
+      <main class="w-full md:w-2/3 content-section">
+        <p class="mb-4" id="bio"><%= poet.biography_english %></p>
+
+        <h3 class="toggle-heading" onclick="toggle('earlyLife')" aria-controls="earlyLife" aria-expanded="false"><span id="earlyLifeHeading"><%= poet.earlyLifeHeading_english %></span></h3>
+        <div id="earlyLife" class="toggle-content"><%= poet.earlyLife_english %></div>
+
+        <h3 class="toggle-heading" onclick="toggle('politicalCareer')" aria-controls="politicalCareer" aria-expanded="false"><span id="politicalCareerHeading"><%= poet.politicalCareerHeading_english %></span></h3>
+        <div id="politicalCareer" class="toggle-content"><%= poet.politicalCareer_english %></div>
+
+        <h3 class="toggle-heading" onclick="toggle('literaryContributions')" aria-controls="literaryContributions" aria-expanded="false"><span id="literaryContributionsHeading"><%= poet.literaryContributionsHeading_english %></span></h3>
+        <div id="literaryContributions" class="toggle-content"><%= poet.literaryContributions_english %></div>
+
+        <h3 class="toggle-heading" onclick="toggle('selectedPoems')" aria-controls="selectedPoems" aria-expanded="false"><span id="selectedPoemsHeading"><%= poet.selectedPoemsHeading_english %></span></h3>
+        <div id="selectedPoems" class="toggle-content">
+          <ul id="poemsList" class="list-disc pl-6">
+            <% (poet.selectedPoems_english || []).forEach(function(poem) { %>
+              <li><%= poem %></li>
+            <% }) %>
+          </ul>
+        </div>
+
+        <h3 class="toggle-heading" onclick="toggle('majorAchievements')" aria-controls="majorAchievements" aria-expanded="false"><span id="majorAchievementsHeading"><%= poet.majorAchievementsHeading_english %></span></h3>
+        <div id="majorAchievements" class="toggle-content">
+          <ul id="achievementsList" class="list-disc pl-6">
+            <% (poet.majorAchievements_english || []).forEach(function(item) { %>
+              <li><%= item %></li>
+            <% }) %>
+          </ul>
+        </div>
+
+        <h3 class="toggle-heading" onclick="toggle('legacy')" aria-controls="legacy" aria-expanded="false"><span id="legacyHeading"><%= poet.legacyHeading_english %></span></h3>
+        <div id="legacy" class="toggle-content"><%= poet.legacy_english %></div>
+
+        <h3 class="toggle-heading" onclick="toggle('quotes')" aria-controls="quotes" aria-expanded="false"><span id="quotesHeading"><%= poet.quotesHeading_english %></span></h3>
+        <div id="quotes" class="toggle-content">
+          <ul id="quotesList" class="list-disc pl-6">
+            <% (poet.quotes_english || []).forEach(function(q) { %>
+              <li><%= q %></li>
+            <% }) %>
+          </ul>
+        </div>
+
+        <h3 class="toggle-heading" onclick="toggle('timeline')" aria-controls="timeline" aria-expanded="false"><span id="timelineHeading"><%= poet.timelineHeading_english %></span></h3>
+        <div id="timeline" class="toggle-content">
+          <ul id="timelineList" class="list-disc pl-6">
+            <% (poet.timeline_english || []).forEach(function(t) { %>
+              <li><%= t %></li>
+            <% }) %>
+          </ul>
+        </div>
+
+        <h3 class="toggle-heading" onclick="toggle('books')" aria-controls="books" aria-expanded="false"><span id="booksHeading"><%= poet.booksHeading_english %></span></h3>
+        <div id="books" class="toggle-content">
+          <ul id="booksList" class="list-disc pl-6">
+            <% (poet.books || []).forEach(function(book) { %>
+              <li><a href="<%= book.link %>" target="_blank"><%= book.title_english %></a>: <%= book.description_english %></li>
+            <% }) %>
+          </ul>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <div class="button-group">
+    <button id="translateBtn" onclick="toggleTranslate()" aria-label="Toggle language between English and Telugu">Translate to <%= poet.language_english %></button>
+    <button id="readAloudBtn" onclick="readAloud()" aria-label="Read the page content aloud">Read Aloud</button>
+    <button id="stopBtn" onclick="stopReading()" aria-label="Pause reading">Stop</button>
+    <button id="resumeBtn" onclick="resumeReading()" aria-label="Resume reading">Resume</button>
+    <button id="restartBtn" onclick="restartReading()" aria-label="Restart reading from the beginning">Restart</button>
+  </div>
+
+  <script>
+    const toggleSections = [
+      'earlyLife', 'politicalCareer', 'literaryContributions', 'selectedPoems',
+      'majorAchievements', 'legacy', 'quotes', 'timeline', 'books'
+    ];
+
+    function toggle(id) {
+      toggleSections.forEach(sectionId => {
+        if (sectionId !== id) {
+          const element = document.getElementById(sectionId);
+          element.classList.remove('active');
+          const heading = document.querySelector(`[aria-controls="${sectionId}"]`);
+          if (heading) heading.setAttribute('aria-expanded', 'false');
+        }
+      });
+      const element = document.getElementById(id);
+      const isActive = element.classList.toggle('active');
+      const heading = document.querySelector(`[aria-controls="${id}"]`);
+      if (heading) heading.setAttribute('aria-expanded', isActive);
+    }
+
+    let utterance = null;
+    let paused = false;
+    let currentLang = 'english';
+
+    function getTeluguVoice() {
+      return window.speechSynthesis.getVoices().find(v => v.lang.includes('te-IN') || v.lang.includes('te')) || null;
+    }
+
+    function readAloud() {
+      if (utterance) speechSynthesis.cancel();
+      const voices = window.speechSynthesis.getVoices();
+      let text = '';
+
+      if (currentLang === 'telugu') {
+        const teluguVoice = getTeluguVoice();
+        if (!teluguVoice) {
+          alert('Telugu voice is not supported on this system. Please try in English or install a Telugu voice.');
+          return;
+        }
+        text = [
+          document.getElementById('poetName').innerText,
+          document.getElementById('poetRole').innerText,
+          document.getElementById('bio').innerText,
+          `${document.getElementById('bornLabel').innerText} ${document.getElementById('born').innerText}`,
+          `${document.getElementById('diedLabel').innerText} ${document.getElementById('died').innerText}`,
+          `${document.getElementById('stateLabel').innerText} ${document.getElementById('state').innerText}`,
+          `${document.getElementById('languageLabel').innerText} ${document.getElementById('language').innerText}`,
+          `${document.getElementById('nationalityLabel').innerText} ${document.getElementById('nationality').innerText}`,
+          `${document.getElementById('educationLabel').innerText} ${document.getElementById('education').innerText}`,
+          `${document.getElementById('occupationLabel').innerText} ${document.getElementById('occupation').innerText}`,
+          ...toggleSections.map(id => document.getElementById(id).classList.contains('active') ? document.getElementById(id).innerText : '')
+        ].filter(t => t).join(' ');
+        utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = teluguVoice;
+        utterance.lang = teluguVoice.lang;
+        utterance.rate = 0.9;
+      } else {
+        text = Array.from(document.querySelectorAll('.content-section *'))
+          .map(el => el.innerText)
+          .filter(text => text.trim())
+          .join(' ');
+        utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 1.0;
+      }
+      speechSynthesis.speak(utterance);
+    }
+
+    function stopReading() {
+      if (utterance && speechSynthesis.speaking && !speechSynthesis.paused) {
+        speechSynthesis.pause();
+        paused = true;
+      }
+    }
+
+    function resumeReading() {
+      if (utterance && paused) {
+        speechSynthesis.resume();
+        paused = false;
+      }
+    }
+
+    function restartReading() {
+      if (utterance) {
+        speechSynthesis.cancel();
+        readAloud();
+      }
+    }
+
+    function toggleTranslate() {
+      if (currentLang === 'english') {
+        try {
+          const poet = {
+            name_telugu: "<%= poet.name_telugu %>",
+            notableRole_telugu: "<%= poet.notableRole_telugu %>",
+            biography_telugu: "<%= poet.biography_telugu || poet.translations?.biography %>",
+            bornLabel_telugu: "<%= poet.bornLabel_telugu %>",
+            born_telugu: "<%= poet.born_telugu %>",
+            diedLabel_telugu: "<%= poet.diedLabel_telugu %>",
+            died_telugu: "<%= poet.died_telugu %>",
+            stateLabel_telugu: "<%= poet.stateLabel_telugu %>",
+            state_telugu: "<%= poet.state_telugu %>",
+            languageLabel_telugu: "<%= poet.languageLabel_telugu %>",
+            language_telugu: "<%= poet.language_telugu %>",
+            nationalityLabel_telugu: "<%= poet.nationalityLabel_telugu %>",
+            nationality_telugu: "<%= poet.nationality_telugu %>",
+            educationLabel_telugu: "<%= poet.educationLabel_telugu %>",
+            education_telugu: "<%= poet.education_telugu %>",
+            occupationLabel_telugu: "<%= poet.occupationLabel_telugu %>",
+            occupation_telugu: "<%= poet.occupation_telugu %>",
+            earlyLife_telugu: "<%= poet.earlyLife_telugu %>",
+            politicalCareer_telugu: "<%= poet.politicalCareer_telugu %>",
+            literaryContributions_telugu: "<%= poet.literaryContributions_telugu %>",
+            legacy_telugu: "<%= poet.legacy_telugu %>",
+            earlyLifeHeading_telugu: "<%= poet.earlyLifeHeading_telugu %>",
+            politicalCareerHeading_telugu: "<%= poet.politicalCareerHeading_telugu %>",
+            literaryContributionsHeading_telugu: "<%= poet.literaryContributionsHeading_telugu %>",
+            selectedPoemsHeading_telugu: "<%= poet.selectedPoemsHeading_telugu %>",
+            majorAchievementsHeading_telugu: "<%= poet.majorAchievementsHeading_telugu %>",
+            legacyHeading_telugu: "<%= poet.legacyHeading_telugu %>",
+            quotesHeading_telugu: "<%= poet.quotesHeading_telugu %>",
+            timelineHeading_telugu: "<%= poet.timelineHeading_telugu %>",
+            booksHeading_telugu: "<%= poet.booksHeading_telugu %>",
+            selectedPoems_telugu: <%- JSON.stringify(poet.selectedPoems_telugu || []) %>,
+            majorAchievements_telugu: <%- JSON.stringify(poet.majorAchievements_telugu || []) %>,
+            quotes_telugu: <%- JSON.stringify(poet.quotes_telugu || []) %>,
+            timeline_telugu: <%- JSON.stringify(poet.timeline_telugu || []) %>,
+            books: <%- JSON.stringify(poet.books || []) %>
+          };
+
+          document.getElementById('poetName').innerText = poet.name_telugu;
+          document.getElementById('poetRole').innerText = poet.notableRole_telugu;
+          document.getElementById('bio').innerText = poet.biography_telugu;
+          document.getElementById('bornLabel').innerText = `${poet.bornLabel_telugu}:`;
+          document.getElementById('born').innerText = poet.born_telugu;
+          document.getElementById('diedLabel').innerText = `${poet.diedLabel_telugu}:`;
+          document.getElementById('died').innerText = poet.died_telugu;
+          document.getElementById('stateLabel').innerText = `${poet.stateLabel_telugu}:`;
+          document.getElementById('state').innerText = poet.state_telugu;
+          document.getElementById('languageLabel').innerText = `${poet.languageLabel_telugu}:`;
+          document.getElementById('language').innerText = poet.language_telugu;
+          document.getElementById('nationalityLabel').innerText = `${poet.nationalityLabel_telugu}:`;
+          document.getElementById('nationality').innerText = poet.nationality_telugu;
+          document.getElementById('educationLabel').innerText = `${poet.educationLabel_telugu}:`;
+          document.getElementById('education').innerText = poet.education_telugu;
+          document.getElementById('occupationLabel').innerText = `${poet.occupationLabel_telugu}:`;
+          document.getElementById('occupation').innerText = poet.occupation_telugu;
+          document.getElementById('earlyLife').innerText = poet.earlyLife_telugu;
+          document.getElementById('politicalCareer').innerText = poet.politicalCareer_telugu;
+          document.getElementById('literaryContributions').innerText = poet.literaryContributions_telugu;
+          document.getElementById('legacy').innerText = poet.legacy_telugu;
+          document.getElementById('earlyLifeHeading').innerText = poet.earlyLifeHeading_telugu;
+          document.getElementById('politicalCareerHeading').innerText = poet.politicalCareerHeading_telugu;
+          document.getElementById('literaryContributionsHeading').innerText = poet.literaryContributionsHeading_telugu;
+          document.getElementById('selectedPoemsHeading').innerText = poet.selectedPoemsHeading_telugu;
+          document.getElementById('majorAchievementsHeading').innerText = poet.majorAchievementsHeading_telugu;
+          document.getElementById('legacyHeading').innerText = poet.legacyHeading_telugu;
+          document.getElementById('quotesHeading').innerText = poet.quotesHeading_telugu;
+          document.getElementById('timelineHeading').innerText = poet.timelineHeading_telugu;
+          document.getElementById('booksHeading').innerText = poet.booksHeading_telugu;
+
+          document.getElementById('poemsList').innerHTML = poet.selectedPoems_telugu.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('achievementsList').innerHTML = poet.majorAchievements_telugu.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('quotesList').innerHTML = poet.quotes_telugu.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('timelineList').innerHTML = poet.timeline_telugu.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('booksList').innerHTML = poet.books.map(b => `<li><a href="${b.link}" target="_blank">${b.title_telugu}</a>: ${b.description_telugu}</li>`).join('');
+
+          if (utterance && speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+          }
+          document.getElementById('readAloudBtn').classList.add('hidden');
+          document.getElementById('stopBtn').classList.add('hidden');
+          document.getElementById('resumeBtn').classList.add('hidden');
+          document.getElementById('restartBtn').classList.add('hidden');
+
+          document.getElementById('translateBtn').innerText = "Translate to English";
+          document.getElementById('translateBtn').setAttribute('aria-label', 'Switch to English');
+          currentLang = 'telugu';
+        } catch (err) {
+          console.error('Translation error:', err);
+          alert('Error during translation: ' + err.message);
+        }
+      } else {
+        try {
+          if (utterance && speechSynthesis.speaking) {
+            speechSynthesis.cancel();
+          }
+          const poet = {
+            name_english: "<%= poet.name_english %>",
+            notableRole_english: "<%= poet.notableRole_english %>",
+            biography_english: "<%= poet.biography_english %>",
+            bornLabel_english: "<%= poet.bornLabel_english %>",
+            born_english: "<%= poet.born_english %>",
+            diedLabel_english: "<%= poet.diedLabel_english %>",
+            died_english: "<%= poet.died_english %>",
+            stateLabel_english: "<%= poet.stateLabel_english %>",
+            state_english: "<%= poet.state_english %>",
+            languageLabel_english: "<%= poet.languageLabel_english %>",
+            language_english: "<%= poet.language_english %>",
+            nationalityLabel_english: "<%= poet.nationalityLabel_english %>",
+            nationality_english: "<%= poet.nationality_english %>",
+            educationLabel_english: "<%= poet.educationLabel_english %>",
+            education_english: "<%= poet.education_english %>",
+            occupationLabel_english: "<%= poet.occupationLabel_english %>",
+            occupation_english: "<%= poet.occupation_english %>",
+            earlyLife_english: "<%= poet.earlyLife_english %>",
+            politicalCareer_english: "<%= poet.politicalCareer_english %>",
+            literaryContributions_english: "<%= poet.literaryContributions_english %>",
+            legacy_english: "<%= poet.legacy_english %>",
+            earlyLifeHeading_english: "<%= poet.earlyLifeHeading_english %>",
+            politicalCareerHeading_english: "<%= poet.politicalCareerHeading_english %>",
+            literaryContributionsHeading_english: "<%= poet.literaryContributionsHeading_english %>",
+            selectedPoemsHeading_english: "<%= poet.selectedPoemsHeading_english %>",
+            majorAchievementsHeading_english: "<%= poet.majorAchievementsHeading_english %>",
+            legacyHeading_english: "<%= poet.legacyHeading_english %>",
+            quotesHeading_english: "<%= poet.quotesHeading_english %>",
+            timelineHeading_english: "<%= poet.timelineHeading_english %>",
+            booksHeading_english: "<%= poet.booksHeading_english %>",
+            selectedPoems_english: <%- JSON.stringify(poet.selectedPoems_english || []) %>,
+            majorAchievements_english: <%- JSON.stringify(poet.majorAchievements_english || []) %>,
+            quotes_english: <%- JSON.stringify(poet.quotes_english || []) %>,
+            timeline_english: <%- JSON.stringify(poet.timeline_english || []) %>,
+            books: <%- JSON.stringify(poet.books || []) %>
+          };
+
+          document.getElementById('poetName').innerText = poet.name_english;
+          document.getElementById('poetRole').innerText = poet.notableRole_english;
+          document.getElementById('bio').innerText = poet.biography_english;
+          document.getElementById('bornLabel').innerText = `${poet.bornLabel_english}:`;
+          document.getElementById('born').innerText = poet.born_english;
+          document.getElementById('diedLabel').innerText = `${poet.diedLabel_english}:`;
+          document.getElementById('died').innerText = poet.died_english;
+          document.getElementById('stateLabel').innerText = `${poet.stateLabel_english}:`;
+          document.getElementById('state').innerText = poet.state_english;
+          document.getElementById('languageLabel').innerText = `${poet.languageLabel_english}:`;
+          document.getElementById('language').innerText = poet.language_english;
+          document.getElementById('nationalityLabel').innerText = `${poet.nationalityLabel_english}:`;
+          document.getElementById('nationality').innerText = poet.nationality_english;
+          document.getElementById('educationLabel').innerText = `${poet.educationLabel_english}:`;
+          document.getElementById('education').innerText = poet.education_english;
+          document.getElementById('occupationLabel').innerText = `${poet.occupationLabel_english}:`;
+          document.getElementById('occupation').innerText = poet.occupation_english;
+          document.getElementById('earlyLife').innerText = poet.earlyLife_english;
+          document.getElementById('politicalCareer').innerText = poet.politicalCareer_english;
+          document.getElementById('literaryContributions').innerText = poet.literaryContributions_english;
+          document.getElementById('legacy').innerText = poet.legacy_english;
+          document.getElementById('earlyLifeHeading').innerText = poet.earlyLifeHeading_english;
+          document.getElementById('politicalCareerHeading').innerText = poet.politicalCareerHeading_english;
+          document.getElementById('literaryContributionsHeading').innerText = poet.literaryContributionsHeading_english;
+          document.getElementById('selectedPoemsHeading').innerText = poet.selectedPoemsHeading_english;
+          document.getElementById('majorAchievementsHeading').innerText = poet.majorAchievementsHeading_english;
+          document.getElementById('legacyHeading').innerText = poet.legacyHeading_english;
+          document.getElementById('quotesHeading').innerText = poet.quotesHeading_english;
+          document.getElementById('timelineHeading').innerText = poet.timelineHeading_english;
+          document.getElementById('booksHeading').innerText = poet.booksHeading_english;
+
+          document.getElementById('poemsList').innerHTML = poet.selectedPoems_english.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('achievementsList').innerHTML = poet.majorAchievements_english.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('quotesList').innerHTML = poet.quotes_english.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('timelineList').innerHTML = poet.timeline_english.map(p => `<li>${p}</li>`).join('');
+          document.getElementById('booksList').innerHTML = poet.books.map(b => `<li><a href="${b.link}" target="_blank">${b.title_english}</a>: ${b.description_english}</li>`).join('');
+
+          document.getElementById('readAloudBtn').classList.remove('hidden');
+          document.getElementById('stopBtn').classList.remove('hidden');
+          document.getElementById('resumeBtn').classList.remove('hidden');
+          document.getElementById('restartBtn').classList.remove('hidden');
+
+          document.getElementById('translateBtn').innerText = "Translate to Telugu";
+          document.getElementById('translateBtn').setAttribute('aria-label', 'Switch to Telugu');
+          currentLang = 'english';
+        } catch (err) {
+          console.error('Translation revert error:', err);
+          alert('Error reverting to English: ' + err.message);
+        }
+      }
+    }
+
+    // Preload voices and attach event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      window.speechSynthesis.getVoices(); // Trigger voice loading
+      // Ensure buttons work after DOM load
+      document.getElementById('readAloudBtn').addEventListener('click', readAloud);
+      document.getElementById('stopBtn').addEventListener('click', stopReading);
+      document.getElementById('resumeBtn').addEventListener('click', resumeReading);
+      document.getElementById('restartBtn').addEventListener('click', restartReading);
+    });
+
+    // Stop reading when leaving the page
+    window.addEventListener('beforeunload', () => {
+      if (utterance && speechSynthesis.speaking) {
+        speechSynthesis.cancel();
+      }
+    });
+  </script>
+</body>
+</html>

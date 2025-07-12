@@ -1,123 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>Search | Indian Poets</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search | Poets of India</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f0f4f8;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+    }
+    #voiceBtn.listening img {
+      transform: scale(1.2);
+    }
+    #listeningStatus {
+      display: none !important;
     }
 
-    nav {
-      background: #e0f7fa;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #00796b;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
-
-    .container {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    #search-container {
-      position: relative;
-      width: 100%;
-      max-width: 500px;
-    }
-
-    #searchInput {
-      width: 100%;
-      padding: 15px 20px;
-      font-size: 1.2rem;
-      border-radius: 40px;
-      border: 1px solid #ccc;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      outline: none;
-    }
-
-    #searchInput:focus {
-      border-color: #26a69a;
-    }
-
-    #suggestions {
-      position: absolute;
-      top: 110%;
-      left: 0;
-      right: 0;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 999;
-    }
-
-    #suggestions div {
-      padding: 10px 15px;
-      cursor: pointer;
-    }
-
-    #suggestions div:hover {
-      background-color: #e0f7fa;
-    }
-
-    .credit {
-      padding: 1rem;
-      text-align: center;
-      color: gray;
-      font-size: 0.9rem;
-    }
+    .bg-primary { background-color: #cc7722; }
+    .text-primary { color: #cc7722; }
+    .hover\:text-primary:hover { color: #cc7722; }
+    .hover\:bg-primary:hover { background-color: #b35c00; }
   </style>
 </head>
-<body>
 
-  <nav>
-    <a href="home_page.html">Home</a>
-    <a href="search.html">Search</a>
-    <a href="map.html">Map</a>
-    <a href="support.html">Support</a>
-    <a href="chatbot.html">Chatbot</a>
-  </nav>
+<body class="bg-gradient-to-br from-white via-[#ffe5c0] to-[#cc7722] min-h-screen flex flex-col text-gray-800">
 
-  <div class="container">
-    <h2>Search for a State or Poet</h2>
-
-    <div id="search-container">
-      <input type="text" id="searchInput" placeholder="Type something..." autocomplete="off">
-      <div id="suggestions"></div>
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-primary">Poets of India</h1>
+      <nav class="flex space-x-6 items-center">
+        <a href="home_page.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          🏠 Home
+        </a>
+        <a href="library.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          📚 Library
+        </a>
+        <a href="map.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          🗺️ Map
+        </a>
+        <a href="/poets_corner" class="flex items-center gap-1 hover:text-primary font-medium">
+          ✍️ Poets Corner
+        </a>
+        <a href="search.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          🔍 Search
+        </a>
+      </nav>
     </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex flex-col items-center justify-center flex-1 px-4 text-center">
+    <h2 class="text-3xl font-bold mb-2 text-primary">Search for a State or Poet</h2>
+    <p class="text-gray-700 mb-8">Discover timeless verses with AI-powered search</p>
+
+    <!-- Search Container -->
+    <div id="search-container" class="relative w-full max-w-xl">
+      <input 
+        type="text" 
+        id="searchInput"
+        placeholder="Ask me about poets or states..."
+        class="w-full py-4 pl-6 pr-28 rounded-full border border-gray-300 shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition"
+        autocomplete="off"
+      />
+
+      <!-- Search Icon -->
+      <button id="searchBtn" aria-label="Search"
+        class="absolute right-14 top-1/2 -translate-y-1/2 text-primary hover:text-[#b35c00]">
+        <i class="fas fa-search text-xl"></i>
+      </button>
+
+      <!-- Mic Icon -->
+      <button id="voiceBtn" aria-label="Voice Search"
+        class="absolute right-4 top-1/2 -translate-y-1/2">
+        <img src="mic.jpeg" alt="Mic Icon" class="w-7 h-7 transition" />
+      </button>
+
+      <!-- Suggestions Box -->
+      <div id="suggestions" class="absolute w-full mt-2 bg-white rounded-lg shadow-lg border border-gray-200 text-left z-50"></div>
+    </div>
+  </main>
+
+  <!-- Listening Status -->
+  <div id="listeningStatus" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white shadow-xl rounded-xl px-10 py-8 flex flex-col items-center gap-4">
+    <div class="flex gap-2">
+      <div class="w-2 h-5 bg-blue-500 animate-pulse"></div>
+      <div class="w-2 h-5 bg-red-500 animate-pulse"></div>
+      <div class="w-2 h-5 bg-yellow-500 animate-pulse"></div>
+      <div class="w-2 h-5 bg-green-500 animate-pulse"></div>
+    </div>
+    <p class="text-gray-800 font-semibold">Listening...</p>
   </div>
 
-  <div class="credit">© 2025 Poets of India</div>
-
+  <!-- JS Logic -->
   <script>
     const input = document.getElementById("searchInput");
     const suggestionsBox = document.getElementById("suggestions");
+    const searchBtn = document.getElementById("searchBtn");
+    const listeningStatus = document.getElementById("listeningStatus");
+    const voiceBtn = document.getElementById("voiceBtn");
 
-    input.addEventListener("input", () => {
+    document.addEventListener("DOMContentLoaded", () => {
+      listeningStatus.style.display = "none";
+    });
+
+    window.onload = () => {
+      listeningStatus.style.display = "none";
+    };
+
+    function slugify(str) {
+      return str.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-");
+    }
+
+    function search() {
       const q = input.value.trim();
       if (!q) {
         suggestionsBox.innerHTML = "";
@@ -128,30 +125,84 @@
         .then(res => res.json())
         .then(data => {
           suggestionsBox.innerHTML = "";
-
           if (!data.length) {
-            suggestionsBox.innerHTML = "<div>No results found</div>";
+            suggestionsBox.innerHTML = "<div class='px-4 py-2 text-gray-600'>No results found</div>";
             return;
           }
-
           data.forEach(item => {
             const div = document.createElement("div");
-            div.textContent = `${item.name} (${item.type})`;
+            div.className = "px-4 py-2 hover:bg-primary hover:text-white cursor-pointer";
+            div.textContent = `${item.name} (${item.type || "poet"})`;
             div.addEventListener("click", () => {
-              const url = item.url.endsWith(".html") ? item.url : `${item.url}.html`;
-              window.location.href = url;
+              const slug = slugify(item.name);
+              window.location.href = `/poet/${slug}`;
             });
             suggestionsBox.appendChild(div);
           });
+        })
+        .catch(err => {
+          console.error("Search error:", err);
+          suggestionsBox.innerHTML = "<div class='px-4 py-2 text-red-500'>Error loading results</div>";
         });
-    });
+    }
 
-    input.addEventListener("keypress", e => {
-      if (e.key === "Enter") {
-        const firstSuggestion = suggestionsBox.querySelector("div");
-        if (firstSuggestion) firstSuggestion.click();
-      }
-    });
+    input.addEventListener("input", search);
+    input.addEventListener("keypress", e => { if (e.key === "Enter") search(); });
+    searchBtn.addEventListener("click", search);
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-IN";
+      recognition.interimResults = false;
+      let isListening = false;
+
+      voiceBtn.addEventListener("click", e => {
+        e.stopPropagation();
+        if (isListening) {
+          recognition.stop();
+          return;
+        }
+        recognition.start();
+        isListening = true;
+        voiceBtn.classList.add("listening");
+        listeningStatus.style.display = "flex";
+      });
+
+      recognition.addEventListener("result", e => {
+        const transcript = e.results[0][0].transcript;
+        input.value = transcript;
+        search();
+      });
+
+      recognition.addEventListener("end", () => {
+        isListening = false;
+        voiceBtn.classList.remove("listening");
+        listeningStatus.style.display = "none";
+      });
+
+      recognition.addEventListener("error", e => {
+        console.error("Speech recognition error:", e);
+        isListening = false;
+        voiceBtn.classList.remove("listening");
+        listeningStatus.style.display = "none";
+        alert("Could not recognize speech. Please try again.");
+      });
+
+      document.addEventListener("click", e => {
+        if (isListening && e.target !== voiceBtn && !voiceBtn.contains(e.target)) {
+          recognition.stop();
+          isListening = false;
+          voiceBtn.classList.remove("listening");
+          listeningStatus.style.display = "none";
+        }
+      });
+
+    } else {
+      alert("Your browser does not support Speech Recognition.");
+    }
   </script>
+
 </body>
 </html>

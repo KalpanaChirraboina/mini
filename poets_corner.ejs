@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Poet's Corner | Poets of India</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fffbea;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d97706;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .navbar ul li a.active {
+      color: #d97706;
+      font-weight: 600;
+    }
+
+    .navbar ul li a:hover {
+      color: #d97706;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .container h1 {
+      text-align: center;
+      color: #d97706;
+    }
+
+    .container p {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #555;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background: #d97706;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b45309;
+    }
+
+    h2 {
+      color: #d97706;
+      margin-top: 2rem;
+    }
+
+    .thoughts-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .thoughts-list li {
+      background: #fff;
+      border: 1px solid #eee;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .delete-btn {
+      background: #ef4444;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+
+    .delete-btn:hover {
+      background: #dc2626;
+    }
+
+    .token-popup {
+      background: #fef3c7;
+      border: 1px solid #fcd34d;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      color: #92400e;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    form {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Poets of India</div>
+    <ul>
+      <li><a href="home_page.html"><span>🏠</span>Home</a></li>
+      <li><a href="library.html"><span>📚</span>Library</a></li>
+      <li><a href="map.html"><span>🗺️</span>Map</a></li>
+      <li><a href="/poet_corner" class="active"><span>✍️</span>Poet's Corner</a></li>
+      <li><a href="search.html"><span>🔍</span>Search</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Poet's Corner</h1>
+    <p>Share your poem, quote, or thought below. Add your name or stay anonymous.</p>
+
+    <% if (newToken && newToken !== "") { %>
+      <div class="token-popup">
+        ✅ Your delete code: <strong><%= newToken %></strong><br>
+        Save this code to delete your thought later!
+      </div>
+    <% } %>
+
+    <form action="/add" method="POST">
+      <textarea name="thought" placeholder="Your words here..." required></textarea>
+      <input type="text" name="poetName" placeholder="Your name (optional)">
+      <button type="submit">Share Now</button>
+    </form>
+
+    <h2>Shared Poems & Thoughts</h2>
+    <ul class="thoughts-list">
+      <% thoughts.forEach(thought => { %>
+        <li>
+          <strong><%= thought.poetName ? thought.poetName : "Anonymous" %>:</strong>
+          <p><%= thought.thought %></p>
+          <form action="/delete/<%= thought._id %>" method="POST" onsubmit="return confirm('Delete this thought?');">
+            <input type="text" name="enteredToken" placeholder="Delete code" required>
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+  <% if (newToken && newToken !== "") { %>
+    <script>
+      // Auto-clear the ?newToken= after 5 seconds
+      setTimeout(() => {
+        window.location.href = '/poets_corner';
+      }, 5000);
+    </script>
+  <% } %>
+</body>
+</html>

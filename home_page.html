@@ -1,288 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poets of India - Home</title>
-    <meta name="description" content="Explore the literary legacy of poets from India's 29 states and Union Territories.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-            background: #fbfcfc;
-        }
-        .background-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            filter: blur(10px);
-            -webkit-filter: blur(10px);
-        }
-        .main-container {
-            background: #fcfbfb;
-            width: 100%;
-            position: relative;
-            z-index: 1;
-        }
-        .nav-bar {
-            background: transparent;
-            box-shadow: none;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            padding: 1rem 0;
-        }
-        .nav-link {
-            color: #ffffff;
-            font-size: 1.5rem;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
-            background: #0f766e;
-            padding: 0.5rem 1.25rem;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            text-decoration: none;
-        }
-        .nav-link:hover {
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background: #0f766e;
-        }
-        .nav-link.active {
-            color: #ffffff;
-            font-weight: 700;
-            background: #0f766e;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            width: 100%;
-        }
-        .carousel-item {
-            flex-shrink: 0;
-            width: 33.33%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .carousel img {
-            width: 90%;
-            height: 400px;
-            animation: fadeInImage 1s ease-out;
-            filter: none;
-        }
-        .image-name {
-            background: rgba(255, 255, 255, 0.8);
-            color: #333;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: 500;
-            width: fit-content;
-        }
-        .carousel-arrow {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1.5rem;
-            border-radius: 50%;
-            user-select: none;
-            z-index: 2;
-        }
-        .arrow-left {
-            left: 1rem;
-        }
-        .arrow-right {
-            right: 1rem;
-        }
-        .content-section {
-            width: 80%;
-            margin: 2rem auto;
-            animation: fadeInContent 1s ease-out;
-            position: relative;
-            z-index: 1;
-            color: black;
-            font-size: 160%;
-            text-align: justify;
-        }
-        @keyframes fadeInImage {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes fadeInContent {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Poets of India</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <style>
+    .bg-primary { background-color: #cc7722; }
+    .text-primary { color: #cc7722; }
+    .hover\:text-primary:hover { color: #cc7722; }
+    .hover\:bg-primary:hover { background-color: #b35c00; }
+  </style>
 </head>
-<body>
-    <img src="" alt="Background Image" class="background-image">
 
-    <div class="main-container">
-        <nav class="nav-bar py-4">
-            <div class="flex justify-between items-center px-4">
-                <h1 class="text-2xl font-bold text-gray-800">Poets of India</h1>
-                <ul class="flex space-x-4">
-                    <li><a href="home.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="map.html" class="nav-link"><i class="fas fa-map"></i> Map</a></li>
-                    <li><a href="chatbot.html" class="nav-link"><i class="fas fa-robot"></i> Chatbot</a></li>
-                    <li><a href="search.html" class="nav-link"><i class="fas fa-search"></i> Search</a></li>
-                    <li><a href="support.html" class="nav-link"><i class="fas fa-headset"></i> Support</a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <div class="carousel" id="carousel">
-            <div class="carousel-item">
-                <img src="kaloji.jpeg" alt="Indian Poetry Manuscript">
-                <div class="image-name">Kaloji</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="sarojini.jpg" alt="Indian Poetry Manuscript">
-                <div class="image-name">Kaloji</div>
-            </div>
-            <div class="carousel-item">
-                <img src="arundhati.jpg" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="tagore.jpg" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="avvaiyar.jpg" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="bharathidasan.jpg" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-            <div class="carousel-item">
-                <img src="" alt="Bharatanatyam Dance">
-                <div class="image-name">C Narayana Reddy</div>
-            </div>
-        </div>
-        <div class="carousel-arrow arrow-left" onclick="moveCarousel(-1)">❮</div>
-        <div class="carousel-arrow arrow-right" onclick="moveCarousel(1)">❯</div>
-
-        <div class="content-section">
-            <h2 class="text-2xl font-bold text-gray-800 mb-4">Significance of Indian Poets</h2>
-            <p class="text-gray-600 mb-4">
-                Indian poets from the 29 states and Union Territories have woven the essence of the nation’s soul into their verses, safeguarding its rich cultural tapestry across generations. Their writings, steeped in regional languages and traditions, not only mirror India’s vibrant diversity but also ignite social change and foster unity. From the revolutionary zeal of Subramania Bharati to the lyrical grace of Sarojini Naidu, their words transcend time, inspiring a deeper connection to India’s heritage and values.
-            </p>
-        </div>
+<body class="bg-orange-50 text-gray-800">
+  <!-- Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
+      <h1 class="text-2xl font-bold text-primary">Poets of India</h1>
+      <nav class="flex space-x-6 items-center">
+        <a href="home_page.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          <!-- Home Icon -->
+          🏠
+          Home
+        </a>
+        <a href="library.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          <!-- Library Icon -->
+          📚
+          Library
+        </a>
+        <a href="map.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          <!-- Map Icon -->
+          🗺️
+          Map
+        </a>
+        <a href="/poets_corner" class="flex items-center gap-1 hover:text-primary font-medium">
+          <!-- Share a Verse Icon -->
+          ✍️
+         Poets Corner
+        </a>
+        <a href="search.html" class="flex items-center gap-1 hover:text-primary font-medium">
+          <!-- Search Icon -->
+          🔍
+          Search
+        </a>
+      </nav>
     </div>
+  </header>
 
-    <script>
-        const carousel = document.getElementById('carousel');
-        const items = carousel.children;
-        const totalItems = items.length;
-        const itemsPerView = 3;
-        let currentIndex = 0;
+  <!-- Hero Banner -->
+  <section class="bg-orange-100 py-16 text-center">
+    <h2 class="text-4xl font-bold mb-4 text-primary">Celebrating India's Rich Poetry</h2>
+    <p class="max-w-xl mx-auto mb-6">Discover timeless verses, explore legendary poets, and express your own thoughts with our vibrant literary community.</p>
+    <a href="map.html" class="bg-primary text-white px-6 py-3 rounded-full shadow hover:bg-orange-900">Explore Now</a>
+  </section>
 
-        function moveCarousel(direction) {
-            currentIndex = (currentIndex + direction * itemsPerView) % (totalItems - itemsPerView + 1);
-            if (currentIndex < 0) {
-                currentIndex = 0;
-            }
-            carousel.style.transform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
-        }
+  <!-- Poets Carousel -->
+  <section class="my-12 max-w-6xl mx-auto px-4">
+    <div class="swiper mySwiper rounded-2xl overflow-hidden">
+      <div class="swiper-wrapper">
+        <!-- Add your slides here -->
+        <div class="swiper-slide relative">
+          <img src="tagore.jpg" class="w-full h-80 object-cover" />
+          <div class="absolute bottom-0 bg-primary bg-opacity-80 text-white p-4 w-full">
+            <h3 class="text-xl font-bold">Rabindranath Tagore</h3>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="arundhati.jpg" class="w-full h-80 object-cover" />
+          <div class="absolute bottom-0 bg-primary bg-opacity-80 text-white p-4 w-full">
+            <h3 class="text-xl font-bold">Arundhati</h3>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="sarojini.jpg" class="w-full h-80 object-cover" />
+          <div class="absolute bottom-0 bg-primary bg-opacity-80 text-white p-4 w-full">
+            <h3 class="text-xl font-bold">Sarojini Naidu</h3>
+          </div>
+        </div>
+        <div class="swiper-slide relative">
+          <img src="narayana.jpeg" class="w-full h-80 object-cover" />
+          <div class="absolute bottom-0 bg-primary bg-opacity-80 text-white p-4 w-full">
+            <h3 class="text-xl font-bold">Narayana</h3>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </section>
 
-        function autoScroll() {
-            currentIndex = (currentIndex + itemsPerView) % (totalItems - itemsPerView + 1);
-            carousel.style.transform = `translateX(-${(currentIndex * 100) / itemsPerView}%)`;
-        }
+  <!-- Footer with Creators & Faculty Details -->
+  <footer class="bg-primary text-orange-50 py-10 px-6">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+      <!-- Student 1 -->
+      <div>
+        <img src="Ammu.jpg" alt="Student 1" class="w-24 h-24 rounded-full mx-auto md:mx-0 mb-2">
+        <h4 class="font-bold">Aarav Kumar</h4>
+        <p>Roll No: 21CS001</p>
+        <p>Email: aaravkumar@example.com</p>
+      </div>
 
-        setInterval(autoScroll, 3000);
-    </script>
+      <!-- Student 2 -->
+      <div>
+        <img src="student2.jpg" alt="Student 2" class="w-24 h-24 rounded-full mx-auto md:mx-0 mb-2">
+        <h4 class="font-bold">Diya Sharma</h4>
+        <p>Roll No: 21CS002</p>
+        <p>Email: diyasharma@example.com</p>
+      </div>
+
+      <!-- Student 3 -->
+      <div>
+        <img src="student3.jpg" alt="Student 3" class="w-24 h-24 rounded-full mx-auto md:mx-0 mb-2">
+        <h4 class="font-bold">Rohan Singh</h4>
+        <p>Roll No: 21CS003</p>
+        <p>Email: rohansingh@example.com</p>
+      </div>
+
+      <!-- Faculty Advisor -->
+      <div>
+        <img src="tagore.jpg" alt="Student 3" class="w-24 h-24 rounded-full mx-auto md:mx-0 mb-2">
+        <h4 class="font-bold">Rohan Singh</h4>
+        <p>Roll No: 21CS003</p>
+        <p>Email: rohansingh@example.com</p>
+      </div>
+    </div>
+    <div class="mt-6 text-center text-sm text-orange-100">
+      <p class="italic">“Let your words flow like rivers across generations.”</p>
+      <p class="mt-2">For any support or queries, please contact us at <a href="mailto:support@poetsofindia.com" class="underline">support@poetsofindia.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      speed: 800,
+      breakpoints: {
+        640: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+      },
+    });
+  </script>
 </body>
 </html>

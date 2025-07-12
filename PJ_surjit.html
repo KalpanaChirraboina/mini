@@ -1,393 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surjit Patar - Poet Profile</title>
-    <meta name="description" content="Discover the life and works of Surjit Patar, a celebrated Punjabi poet, translator, and academic from Punjab, known for his evocative poetry and contributions to Punjabi literature.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
-            margin: 0;
-        }
-        .container {
-            position: relative;
-        }
-        .sidebar {
-            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .sidebar:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-        }
-        .content-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-            padding: 2.5rem;
-        }
-        .profile-img {
-            max-height: 300px;
-            object-fit: contain;
-            border: 6px solid #e5e7eb;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-            width: 100%;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-        .toggle-content {
-            display: none;
-            margin-top: 0.5rem;
-            padding: 1.25rem;
-            background: #f9fafb;
-            border-left: 4px solid #10b981;
-            border-radius: 6px;
-            animation: fadeIn 0.4s ease-in;
-        }
-        .toggle-content.active {
-            display: block;
-        }
-        .toggle-heading {
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
-            padding: 0.75rem;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem !important;
-        }
-        .toggle-heading:hover {
-            color: #1d4ed8;
-            transform: translateX(5px);
-            background: #eff6ff;
-        }
-        .toggle-heading::before {
-            content: '';
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background-image: url('hand.jpg');
-            background-size: contain;
-            background-repeat: no-repeat;
-            margin-right: 10px;
-        }
-        .quote {
-            font-style: italic;
-            border-left: 4px solid #1d4ed8;
-            padding-left: 1rem;
-            margin: 1rem 0;
-            color: #4b5563;
-            background: #f0f7ff;
-            padding: 1rem;
-            border-radius: 4px;
-        }
-        .books-header {
-            color: #0f766e;
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-        }
-        .books-header::before {
-            content: '📚';
-            margin-right: 0.75rem;
-            font-size: 1.5rem;
-        }
-        .book-link {
-            display: flex;
-            align-items: center;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .book-link:hover {
-            color: #1d4ed8;
-            transform: translateX(3px);
-        }
-        .book-link::before {
-            content: '🔗';
-            margin-right: 0.5rem;
-            font-size: 1rem;
-        }
-        .section-divider {
-            border: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #d1d5db, transparent);
-            margin: 2rem 0;
-        }
-        .back-button, .read-aloud-button, .stop-button, .resume-button, .restart-button {
-            background: linear-gradient(to right, #1d4ed8, #3b82f6);
-            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .back-button:hover, .read-aloud-button:hover, .stop-button:hover, .resume-button:hover, .restart-button:hover {
-            background: linear-gradient(to right, #1e40af, #2563eb);
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .main-header-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.25rem;
-        }
-        .main-header-title::after {
-            content: none;
-        }
-        .section-header-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.25rem;
-        }
-        .section-header-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100vw;
-            height: 3px;
-            background: #000000;
-            border-radius: 0;
-            transform: translateX(calc(-50vw + 50%));
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .sidebar h2 {
-            font-size: 2.25rem;
-        }
-        .sidebar .subtitle {
-            font-size: 1.125rem;
-        }
-        .sidebar-details p {
-            font-size: 1.25rem;
-        }
-        .button-group button:disabled {
-            background: #d1d5db;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= poet.name %> - Poet Profile</title>
+  <meta name="description" content="Discover the life and works of <%= poet.name %>.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom, #f3f4f6, #d1d5db);
+      margin: 0;
+    }
+    .container { position: relative; }
+    .sidebar {
+      background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .sidebar:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .content-section {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 2.5rem;
+    }
+    .profile-img {
+      max-height: 300px;
+      object-fit: contain;
+      border: 6px solid #e5e7eb;
+      border-radius: 10px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+    .profile-img:hover { transform: scale(1.05); }
+    .toggle-content {
+      display: none;
+      margin-top: 0.5rem;
+      padding: 1.25rem;
+      background: #f9fafb;
+      border-left: 4px solid #10b981;
+      border-radius: 6px;
+    }
+    .toggle-content.active { display: block; }
+    .toggle-heading {
+      cursor: pointer;
+      transition: all 0.2s ease;
+      padding: 0.75rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem !important;
+    }
+    .toggle-heading:hover {
+      color: #1d4ed8;
+      transform: translateX(5px);
+      background: #eff6ff;
+    }
+    .toggle-heading::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background-image: url('hand.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 10px;
+    }
+    .books-header {
+      color: #0f766e;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .books-header::before {
+      content: '📚';
+      margin-right: 0.75rem;
+      font-size: 1.5rem;
+    }
+    .book-link {
+      display: flex;
+      align-items: center;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+    .book-link:hover {
+      color: #1d4ed8;
+      transform: translateX(3px);
+    }
+    .book-link::before {
+      content: '🔗';
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+    .section-divider {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #d1d5db, transparent);
+      margin: 2rem 0;
+    }
+  </style>
 </head>
 <body>
-    <div class="container mx-auto p-4 md:p-8">
-        <header class="text-center mb-8 animate-fadeIn">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 main-header-title">Surjit Patar</h1>
-        </header>
-        <div class="flex flex-col md:flex-row gap-6">
-            <!-- Left Sidebar: Photo and Basic Details -->
-            <div class="w-full md:w-1/3 sidebar p-6">
-                <img src="surjit.jpeg" alt="Surjit Patar Photo" class="profile-img w-full mb-6">
-                <h2 class="font-semibold text-gray-800">Surjit Patar</h2>
-                <p class="text-gray-600 mb-4 subtitle">Voice of Punjab</p>
-                <div class="space-y-2 text-gray-700 sidebar-details">
-                    <p><strong>Born:</strong> January 14, 1945, Pattar Kalan, Punjab</p>
-                    <p><strong>Died:</strong> May 11, 2024, Ludhiana, Punjab</p>
-                    <p><strong>State:</strong> Punjab</p>
-                    <p><strong>Language:</strong> Punjabi</p>
-                    <p><strong>Nationality:</strong> Indian</p>
-                    <p><strong>Education:</strong> PhD in Punjabi Literature, Guru Nanak Dev University</p>
-                    <p><strong>Occupation:</strong> Poet, Translator, Academic</p>
-                    <p><strong>Notable Role:</strong> President, Punjab Arts Council</p>
-                </div>
-            </div>
-            <!-- Right Content: Intro and Collapsible Sections -->
-            <div class="w-full md:w-2/3 content-section">
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                    Surjit Patar, a towering figure in Punjabi literature, was a poet, translator, and academic whose evocative verses captured the soul of Punjab. Born in Pattar Kalan, his poetry blended themes of love, loss, nature, and socio-political issues, resonating with readers across generations. As a professor and president of the Punjab Arts Council, he shaped Punjabi literary discourse, earning prestigious awards like the Padma Shri (2012) and the Sahitya Akademi Award (1993).
-                </p>
-                <hr class="section-divider">
-                <!-- Books and Publications (Separate Header) -->
-                <div class="mb-6">
-                    <h3 class="books-header">Books and Publications</h3>
-                    <div class="text-gray-600">
-                        <ul class="list-none space-y-3">
-                            <li class="book-link"><a href="https://www.amazon.in/Hawa-Likhey-Haraf-Surjit-Patar/dp/9350176203" class="text-blue-600 hover:underline">Hawa Vich Likhe Harf</a> (1993): Award-winning poetry collection.</li>
-                            <li class="book-link"><a href="https://www.amazon.in/Birkh-Arz-kare-Surjit-Patar/dp/9350680602" class="text-blue-600 hover:underline">Birkh Arz Kare</a>: Poetic reflections on life and nature.</li>
-                            <li class="book-link"><a href="https://www.amazon.in/Lafzan-Dargah-Surjit-Patar/dp/9350680610" class="text-blue-600 hover:underline">Lafzan Di Dargah</a>: A celebrated poetry collection.</li>
-                            <li class="book-link"><a href="https://www.amazon.in/Patjhar-Panjeb-Surjit-Patar/dp/9350680866" class="text-blue-600 hover:underline">Patjhar Di Pazeb</a>: Poetic meditations on change.</li>
-                        </ul>
-                    </div>
-                </div>
-                <hr class="section-divider">
-                <div class="space-y-4">
-                    <!-- Early Life and Education -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('early-life')">Early Life and Education</h3>
-                        <div id="early-life" class="toggle-content">
-                            Surjit Patar was born on January 14, 1945, in Pattar Kalan, Jalandhar, Punjab. Raised in a rural Sikh family, he developed a love for Punjabi literature early on. He pursued higher education at Punjabi University, Patiala, and earned a PhD in Punjabi literature from Guru Nanak Dev University, Amritsar, focusing on the transformation of folklore in modern Punjabi poetry.
-                        </div>
-                    </div>
-                    <!-- Literary Career -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-career')">Literary Career</h3>
-                        <div id="literary-career" class="toggle-content">
-                            Patar’s literary career began with his debut collection, <em>Hawa Vich Likhe Harf</em>, which won the Sahitya Akademi Award in 1993. As a professor at Punjab Agricultural University, he mentored young writers. He translated works by poets like Neruda and Lorca into Punjabi and served as president of the Punjab Arts Council. His poetry, published in journals and recited widely, addressed Punjab’s socio-political landscape and universal human experiences.
-                        </div>
-                    </div>
-                    <!-- Literary Contributions -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
-                        <div id="literary-contributions" class="toggle-content">
-                            Patar’s poetry is renowned for its lyrical beauty and emotional depth, blending Punjab’s rural imagery with modern sensibilities. Collections like <em>Lafzan Di Dargah</em> and <em>Birkh Arz Kare</em> explore love, loss, and resistance. His translations introduced global poets to Punjabi readers, enriching the language’s literary canon. His work, often recited at cultural events, remains a cornerstone of contemporary Punjabi literature.
-                        </div>
-                    </div>
-                    <!-- Selected Poems -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
-                        <div id="selected-poems" class="toggle-content">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li><em>Kandeyan Te Kaniyan</em>: A poem on Punjab’s struggles.</li>
-                                <li><em>Hanera Jhanjhan Da</em>: Reflective verse on inner turmoil.</li>
-                                <li><em>Lafzan Di Dargah</em>: A poetic tribute to words.</li>
-                                <li><em>Birkh Arz Kare</em>: Nature-inspired meditative poem.</li>
-                                <li><em>Shabad Soor</em>: A poem on the power of language.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Major Achievements -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('achievements')">Major Achievements</h3>
-                        <div id="achievements" class="toggle-content">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>Sahitya Akademi Award (1993) for <em>Hawa Vich Likhe Harf</em>.</li>
-                                <li>Padma Shri (2012) for contributions to literature.</li>
-                                <li>Gangadhar National Award for Poetry (2008).</li>
-                                <li>Kusumagraj Literature Award.</li>
-                                <li>President, Punjab Arts Council, shaping cultural initiatives.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Legacy and Honors -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('legacy')">Legacy and Honors</h3>
-                        <div id="legacy" class="toggle-content">
-                            Surjit Patar’s legacy endures through his profound contributions to Punjabi poetry and culture. His works are studied in universities, and his recitations continue to inspire. Tributes following his death in 2024, including from Punjab’s Chief Minister, highlighted his role as a cultural icon. His poetry remains a bridge between Punjab’s past and present.
-                        </div>
-                    </div>
-                    <!-- Famous Quotes -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
-                        <div id="quotes" class="toggle-content">
-                            <div class="quote">“Poetry is the language of the heart, speaking truths the mind cannot grasp.”</div>
-                            <div class="quote">“In the fields of Punjab, every blade of grass has a story to tell.”</div>
-                        </div>
-                    </div>
-                    <!-- Timeline of Important Events -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('timeline')">Timeline of Important Events</h3>
-                        <div id="timeline" class="toggle-content">
-                            <ul class="list-disc list-inside space-y-2">
-                                <li>1945: Born in Pattar Kalan, Punjab.</li>
-                                <li>1970s: Earned PhD from Guru Nanak Dev University.</li>
-                                <li>1993: Won Sahitya Akademi Award for <em>Hawa Vich Likhe Harf</em>.</li>
-                                <li>2008: Received Gangadhar National Award for Poetry.</li>
-                                <li>2012: Awarded Padma Shri.</li>
-                                <li>2024: Passed away on May 11 in Ludhiana.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Personal Life -->
-                    <div>
-                        <h3 class="font-semibold text-gray-700 toggle-heading" onclick="toggleContent('personal')">Personal Life</h3>
-                        <div id="personal" class="toggle-content">
-                            Surjit Patar lived in Ludhiana, Punjab, with his family. A private individual, he was deeply connected to Punjab’s cultural roots. His academic career and mentorship of young poets reflected his commitment to literature. He remained active in literary circles until his passing in 2024.
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="container mx-auto p-4 md:p-8">
+    <header class="text-center mb-8">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800"><%= poet.name %></h1>
+    </header>
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Sidebar -->
+      <aside class="w-full md:w-1/3 sidebar p-6">
+        <% if (poet.image) { %>
+          <img src="<%= poet.image %>" alt="<%= poet.name %>" class="profile-img mb-6">
+        <% } %>
+        <h2 class="font-semibold text-gray-800"><%= poet.name %></h2>
+        <p class="text-gray-600 mb-4"><%= poet.notableRole %></p>
+        <div class="space-y-2 text-gray-700">
+          <p><strong>Born:</strong> <%= poet.born %></p>
+          <p><strong>Died:</strong> <%= poet.died %></p>
+          <p><strong>State:</strong> <%= poet.state %></p>
+          <p><strong>Nationality:</strong> <%= poet.nationality %></p>
+          <p><strong>Language:</strong> <%= poet.language %></p>
+          <p><strong>Education:</strong> <%= poet.education %></p>
+          <p><strong>Occupation:</strong> <%= poet.occupation %></p>
         </div>
-        <!-- Button Section -->
-        <div class="text-center mt-8 button-group">
-            <button class="read-aloud-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="readAloud()">Read Aloud</button>
-            <button class="stop-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="stopReading()" disabled>Stop</button>
-            <button class="resume-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="resumeReading()" disabled>Resume</button>
-            <button class="restart-button text-white px-6 py-3 rounded-lg font-semibold mr-4" onclick="restartReading()" disabled>Restart</button>
-            <a href="punjab.html" class="inline-block back-button text-white px-6 py-3 rounded-lg font-semibold">Back to Poets</a>
-        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="w-full md:w-2/3 content-section">
+        <% if (poet.biography) { %>
+          <p class="text-gray-600 mb-6"><%= poet.biography %></p>
+          <hr class="section-divider">
+        <% } %>
+
+        <% if (poet.books && poet.books.length > 0) { %>
+          <section>
+            <h3 class="books-header">Books and Publications</h3>
+            <div class="text-gray-600">
+              <ul class="list-none space-y-3">
+                <% poet.books.forEach(function(book) { %>
+                  <li class="book-link">
+                    <a href="<%= book.link %>" target="_blank" class="text-blue-600 hover:underline" rel="noopener noreferrer">
+                      <%= book.title %>
+                    </a> : <%= book.description %>
+                  </li>
+                <% }) %>
+              </ul>
+            </div>
+          </section>
+          <hr class="section-divider">
+        <% } %>
+
+        <% if (poet.earlyLife) { %>
+          <section>
+            <h3 class="toggle-heading" onclick="toggleContent('early-life')">Early Life</h3>
+            <div id="early-life" class="toggle-content"><%= poet.earlyLife %></div>
+          </section>
+        <% } %>
+
+        <% if (poet.politicalCareer) { %>
+          <section>
+            <h3 class="toggle-heading" onclick="toggleContent('political-career')">Political Career</h3>
+            <div id="political-career" class="toggle-content"><%= poet.politicalCareer %></div>
+          </section>
+        <% } %>
+
+        <% if (poet.literaryContributions) { %>
+          <section>
+            <h3 class="toggle-heading" onclick="toggleContent('literary-contributions')">Literary Contributions</h3>
+            <div id="literary-contributions" class="toggle-content"><%= poet.literaryContributions %></div>
+          </section>
+        <% } %>
+
+        <% if (poet.selectedPoems && poet.selectedPoems.length > 0) { %>
+          <section>
+            <h3 class="toggle-heading" onclick="toggleContent('selected-poems')">Selected Poems</h3>
+            <div id="selected-poems" class="toggle-content">
+              <ul class="list-disc list-inside">
+                <% poet.selectedPoems.forEach(function(poem) { %>
+                  <li><%= poem %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </section>
+        <% } %>
+
+        <% if (poet.quotes && poet.quotes.length > 0) { %>
+          <section>
+            <h3 class="toggle-heading" onclick="toggleContent('quotes')">Famous Quotes</h3>
+            <div id="quotes" class="toggle-content">
+              <% poet.quotes.forEach(function(quote) { %>
+                <p class="italic border-l-4 border-blue-600 pl-4 mb-2"><%= quote %></p>
+              <% }) %>
+            </div>
+          </section>
+        <% } %>
+
+      </main>
     </div>
-    <script>
-        // Toggle content visibility
-        function toggleContent(sectionId) {
-            const content = document.getElementById(sectionId);
-            const isActive = content.classList.contains('active');
-            document.querySelectorAll('.toggle-content').forEach((el) => {
-                el.classList.remove('active');
-            });
-            if (!isActive) {
-                content.classList.add('active');
-            }
-        }
+  </div>
 
-        // Text-to-speech functionality
-        let utterance = null;
-        let isPaused = false;
-
-        function readAloud() {
-            if (utterance && !isPaused) {
-                window.speechSynthesis.cancel();
-            }
-            const content = document.querySelector('.content-section').innerText;
-            utterance = new SpeechSynthesisUtterance(content);
-            utterance.lang = 'en-US';
-            utterance.rate = 1;
-            utterance.onend = () => {
-                resetButtons();
-            };
-            window.speechSynthesis.speak(utterance);
-            updateButtonStates(true);
-        }
-
-        function stopReading() {
-            if (utterance) {
-                window.speechSynthesis.pause();
-                isPaused = true;
-                updateButtonStates(true, true);
-            }
-        }
-
-        function resumeReading() {
-            if (utterance && isPaused) {
-                window.speechSynthesis.resume();
-                isPaused = false;
-                updateButtonStates(true);
-            }
-        }
-
-        function restartReading() {
-            window.speechSynthesis.cancel();
-            isPaused = false;
-            readAloud();
-        }
-
-        function updateButtonStates(isReading, isPaused = false) {
-            const readButton = document.querySelector('.read-aloud-button');
-            const stopButton = document.querySelector('.stop-button');
-            const resumeButton = document.querySelector('.resume-button');
-            const restartButton = document.querySelector('.restart-button');
-            readButton.disabled = isReading && !isPaused;
-            stopButton.disabled = !isReading || isPaused;
-            resumeButton.disabled = !isPaused;
-            restartButton.disabled = !isReading;
-        }
-
-        function resetButtons() {
-            isPaused = false;
-            utterance = null;
-            updateButtonStates(false);
-        }
-
-        // Stop speech on page unload or refresh
-        window.addEventListener('beforeunload', () => {
-            window.speechSynthesis.cancel();
-            resetButtons();
-        });
-    </script>
+  <script>
+    function toggleContent(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
